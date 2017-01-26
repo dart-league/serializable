@@ -1,5 +1,5 @@
 import 'package:build_runner/build_runner.dart';
-import 'package:serializable/serializable_generator.dart';
+import 'package:serializable/generator.dart';
 import 'package:source_gen/source_gen.dart';
 
 /// Creates a `serializable` generator-builder phase.

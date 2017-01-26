@@ -8,7 +8,7 @@ class Serializable {
 }
 
 /// Interface that should be implemented by all the generated serializable classes
-abstract class ISerializable implements Map {
+abstract class SerializableMap implements Map {
 
   /// Add all the values the the [map] into the object.
   @override
@@ -70,3 +70,13 @@ abstract class ISerializable implements Map {
   /// return the attributes values
   Iterable get values => keys.map((key) => this[key]);
 }
+
+class FieldNotFoundException implements Exception {
+  final String type;
+  final String key;
+  FieldNotFoundException([this.key, this.type]);
+
+  toString() => "FieldNotFoundException: The key \"$key\" doesn't exist on class \"$type\"";
+}
+
+throwFieldNotFoundException(String key, String type) => throw new FieldNotFoundException(key, type);

@@ -5,14 +5,14 @@ This is a library that generates a serializable class from classes annotated wit
 
 ## Getting Started
 
-1. Create a new project.
-2. add serializable dependency to your `pubspec.yaml`.
+1. Create a new dart project.
+2. add `serializable` dependency to your `pubspec.yaml`.
 
 ```yaml
 ...
 dependencies:
   ...
-  serializable: 0.0.1
+  serializable: any
   ...
 ```
 
@@ -49,6 +49,12 @@ main() {
   print("p1['name']: ${p1['name']}"); //prints `p1['name']: person 1`
   p1['id'] = 1;  // will set `p1.id` to `1`
   p1['name'] = 'person 1'; // will set `p1.name` to `person 1`
+
+  try {
+    p1['no_existing'];
+  } catch(e) {
+    print(e); // prints `FieldNotFoundException: The key "no_existing" doesn't exist on class "Person"`
+  }
 
   // you can also use it to convert the object to/from Map
 
@@ -98,7 +104,7 @@ part of example.person;
 // Target: class Person
 // **************************************************************************
 
-abstract class _$PersonSerializable extends ISerializable {
+abstract class _$PersonSerializable extends SerializableMap {
   get id;
   get name;
   set id(v);
@@ -111,7 +117,7 @@ abstract class _$PersonSerializable extends ISerializable {
       case 'name':
         return name;
     }
-    throw new Exception('field not supported');
+    throwFieldNotFoundError(key, "Person");
   }
 
   operator []=(String key, value) {
@@ -123,7 +129,7 @@ abstract class _$PersonSerializable extends ISerializable {
         name = value;
         return;
     }
-    throw new Exception("The key $key doesn't exist on class Person");
+    throwFieldNotFoundError(key, "Person");
   }
 
   get keys => const ['id', 'name'];
@@ -134,9 +140,11 @@ abstract class _$PersonSerializable extends ISerializable {
 output in console:
 
 ```
-person 1
+p1['id']: 1
+p1['name']: person 1
+FieldNotFoundException: The key "no_existing" doesn't exist on class "Person"
+p1.ToMap(): {id: 1, name: person 1}
+p2: {id: 2, name: person 2}
 p1: {"id":1,"name":"person 1"}
-p2: {id: 1, name: person 2}
-
-Process finished with exit code 0
+p3: {id: 3, name: person 3}
 ```

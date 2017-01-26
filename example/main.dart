@@ -13,6 +13,12 @@ main() {
   p1['id'] = 1;  // will set `p1.id` to `1`
   p1['name'] = 'person 1'; // will set `p1.name` to `person 1`
 
+  try {
+    p1['no_existing'];
+  } catch(e) {
+    print(e); // prints `FieldNotFoundException: The key "no_existing" doesn't exist on class "Person"`
+  }
+
   // you can also use it to convert the object to/from Map
 
   print('p1.ToMap(): ${p1.toMap()}'); // prints `{id: 1, name: person 1}`

@@ -7,7 +7,7 @@ part of example.person;
 // Target: class Person
 // **************************************************************************
 
-abstract class _$PersonSerializable extends ISerializable {
+abstract class _$PersonSerializable extends SerializableMap {
   get id;
   get name;
   set id(v);
@@ -20,7 +20,7 @@ abstract class _$PersonSerializable extends ISerializable {
       case 'name':
         return name;
     }
-    throw new Exception('field not supported');
+    throwFieldNotFoundException(key, "Person");
   }
 
   operator []=(String key, value) {
@@ -32,7 +32,7 @@ abstract class _$PersonSerializable extends ISerializable {
         name = value;
         return;
     }
-    throw new Exception("The key $key doesn't exist on class Person");
+    throwFieldNotFoundException(key, "Person");
   }
 
   get keys => const ['id', 'name'];

@@ -6,7 +6,7 @@ import 'dart:io';
 
 import 'package:build/build.dart';
 import 'package:build_test/build_test.dart';
-import 'package:serializable/serializable_generator.dart';
+import 'package:serializable/generator.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:test/test.dart';
 
