@@ -1,14 +1,18 @@
+import 'package:built_mirrors/built_mirrors.dart';
+export 'package:built_mirrors/built_mirrors.dart';
+
 /// Shorthand annotation of [Serializable] used to determine which classes will
 /// be processed by the generator
 const serializable = const Serializable();
 
 /// annotation used to determine which files will be processed by the generator
-class Serializable {
+class Serializable extends Reflectable {
   const Serializable();
 }
 
 /// Interface that should be implemented by all the generated serializable classes
 abstract class SerializableMap implements Map {
+  const SerializableMap();
 
   /// Add all the values the the [map] into the object.
   @override

@@ -1,3 +1,9 @@
+## 0.1.1
+   
+   - `Serializable` annotation now extends `Reflectable`
+   - add const constructor to `SerializableMap`
+   - add const constructor template to `SerializableGenerator`
+
 ## 0.1.0
 
 - change name from `ISerializable` to `SerializableMap`

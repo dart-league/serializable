@@ -17,8 +17,12 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     var setters = accessors.where((a) => a.kind == ElementKind.SETTER);
 
     return '''abstract class _\$${element.name}Serializable extends SerializableMap {
-  ${getters.map((g) => 'get ${g.name}').join(';\n')};
-  ${setters.map((g) => 'set ${g.displayName}(v)').join(';\n')};
+  ${element.constructors.where((c) => c.isConst)
+        .map((c) => 'const _\$${element.name}Serializable${c.name.isNotEmpty ? '.' + c.name : ''}();')
+        .join('\n')
+  }
+  ${getters.map((g) => 'get ${g.name};').join('\n')}
+  ${setters.map((g) => 'set ${g.displayName}(v);').join('\n')}
 
   operator [](String key) {
     switch(key) {
