@@ -1,8 +1,12 @@
+## 0.1.2
+
+- upgrade dependencies
+
 ## 0.1.1
    
-   - `Serializable` annotation now extends `Reflectable`
-   - add const constructor to `SerializableMap`
-   - add const constructor template to `SerializableGenerator`
+- `Serializable` annotation now extends `Reflectable`
+- add const constructor to `SerializableMap`
+- add const constructor template to `SerializableGenerator`
 
 ## 0.1.0
 

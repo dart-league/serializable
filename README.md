@@ -78,15 +78,16 @@ main() {
 
 ```dart
 import 'package:build_runner/build_runner.dart';
-import 'package:serializable/serializable_phase.dart';
+import 'package:serializable/phase.dart';
 
 
 main() async {
-  await build(new PhaseGroup()..addPhase(
-    // In next line replace `your_package_name` for the name of your package
-    // and `['bin/*.dart']` for the globs you want to use as input, for example `**/*.dart`
+  await build(new PhaseGroup()
+    ..addPhase(
+    // In next line replace `serializable` for the name of your package
+    // and `example/*.dart` for the globs you want to use as input, for example `**/*.dart`
     // to take all the dart files of the project as input.
-    serializablePhase('your_package_name', const ['bin/*.dart'])),
+        serializablePhase('serializable', const ['example/*.dart'])),
       deleteFilesByDefault: true);
 }
 ```
@@ -117,7 +118,7 @@ abstract class _$PersonSerializable extends SerializableMap {
       case 'name':
         return name;
     }
-    throwFieldNotFoundError(key, "Person");
+    throwFieldNotFoundException(key, "Person");
   }
 
   operator []=(String key, value) {
@@ -129,11 +130,12 @@ abstract class _$PersonSerializable extends SerializableMap {
         name = value;
         return;
     }
-    throwFieldNotFoundError(key, "Person");
+    throwFieldNotFoundException(key, "Person");
   }
 
   get keys => const ['id', 'name'];
 }
+
 ```
 
 7. Finally you can run the file `bin/main.dart`. If everything is ok you will see next

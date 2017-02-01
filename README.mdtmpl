@@ -1,0 +1,47 @@
+# serializable
+
+This is a library that generates a serializable class from classes annotated with
+`@serializable` or `@Serializable()`.
+
+## Getting Started
+
+1. Create a new dart project.
+2. add `serializable` dependency to your `pubspec.yaml`.
+
+```yaml
+...
+dependencies:
+  ...
+  serializable: any
+  ...
+```
+
+3. create a file in `bin` folder called `person.dart` and put next code on it:
+
+{@example example/person.dart}
+
+4. create a file in `bin` folder called `main.dart` and put next code on it:
+
+{@example example/main.dart}
+
+5. create a file in `tool` folder called `build.dart` and put next code on it:
+
+{@example tool/build.dart}
+
+6. run `tool/build.dart`. Then you will see that the file `bin/person.g.dart`
+has been generated and it will contains the next code:
+
+{@example example/person.g.dart}
+
+7. Finally you can run the file `bin/main.dart`. If everything is ok you will see next
+output in console:
+
+```
+p1['id']: 1
+p1['name']: person 1
+FieldNotFoundException: The key "no_existing" doesn't exist on class "Person"
+p1.ToMap(): {id: 1, name: person 1}
+p2: {id: 2, name: person 2}
+p1: {"id":1,"name":"person 1"}
+p3: {id: 3, name: person 3}
+```
