@@ -18,7 +18,7 @@ dependencies:
 
 3. create a file in `bin` folder called `person.dart` and put next code on it:
 
-{@example example/person.dart}
+{@example example/models.dart}
 
 4. create a file in `bin` folder called `main.dart` and put next code on it:
 
@@ -31,7 +31,7 @@ dependencies:
 6. run `tool/build.dart`. Then you will see that the file `bin/person.g.dart`
 has been generated and it will contains the next code:
 
-{@example example/person.g.dart}
+{@example example/models.g.dart}
 
 7. Finally you can run the file `bin/main.dart`. If everything is ok you will see next
 output in console:

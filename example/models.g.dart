@@ -20,7 +20,7 @@ abstract class _$PersonSerializable extends SerializableMap {
       case 'name':
         return name;
     }
-    throwFieldNotFoundException(key, "Person");
+    throwFieldNotFoundException(key, 'Person');
   }
 
   operator []=(String key, value) {
@@ -32,8 +32,33 @@ abstract class _$PersonSerializable extends SerializableMap {
         name = value;
         return;
     }
-    throwFieldNotFoundException(key, "Person");
+    throwFieldNotFoundException(key, 'Person');
   }
 
   get keys => const ['id', 'name'];
+}
+
+// **************************************************************************
+// Generator: SerializableGenerator
+// Target: class ClassWithMethod
+// **************************************************************************
+
+abstract class _$ClassWithMethodSerializable extends SerializableMap {
+  void someMethod(String p1);
+
+  operator [](String key) {
+    switch (key) {
+      case 'someMethod':
+        return someMethod;
+    }
+    throwFieldNotFoundException(key, 'ClassWithMethod');
+  }
+
+  operator []=(String key, value) {
+    switch (key) {
+    }
+    throwFieldNotFoundException(key, 'ClassWithMethod');
+  }
+
+  get keys => const [];
 }

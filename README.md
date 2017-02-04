@@ -23,20 +23,26 @@ library example.person;
 
 import 'package:serializable/serializable.dart';
 
-part 'person.g.dart';
+part 'models.g.dart';
 
 @serializable
 class Person extends _$PersonSerializable {
   int id;
   String name;
 }
+
+@serializable
+class ClassWithMethod extends _$ClassWithMethodSerializable {
+  void someMethod(String p1) {}
+}
+
 ```
 
 4. create a file in `bin` folder called `main.dart` and put next code on it:
 
 ```dart
 import 'dart:convert';
-import 'person.dart';
+import 'models.dart';
 
 main() {
   var p1 = new Person()
@@ -118,7 +124,7 @@ abstract class _$PersonSerializable extends SerializableMap {
       case 'name':
         return name;
     }
-    throwFieldNotFoundException(key, "Person");
+    throwFieldNotFoundException(key, 'Person');
   }
 
   operator []=(String key, value) {
@@ -130,10 +136,35 @@ abstract class _$PersonSerializable extends SerializableMap {
         name = value;
         return;
     }
-    throwFieldNotFoundException(key, "Person");
+    throwFieldNotFoundException(key, 'Person');
   }
 
   get keys => const ['id', 'name'];
+}
+
+// **************************************************************************
+// Generator: SerializableGenerator
+// Target: class ClassWithMethod
+// **************************************************************************
+
+abstract class _$ClassWithMethodSerializable extends SerializableMap {
+  void someMethod(String p1);
+
+  operator [](String key) {
+    switch (key) {
+      case 'someMethod':
+        return someMethod;
+    }
+    throwFieldNotFoundException(key, 'ClassWithMethod');
+  }
+
+  operator []=(String key, value) {
+    switch (key) {
+    }
+    throwFieldNotFoundException(key, 'ClassWithMethod');
+  }
+
+  get keys => const [];
 }
 
 ```

@@ -1,3 +1,10 @@
+## 0.2.0
+
+-  add ability to get methods using strings, for example:
+```dart
+var sayHello = person['sayHello']; // will return `person.sayHello`
+```
+
 ## 0.1.2
 
 - upgrade dependencies
