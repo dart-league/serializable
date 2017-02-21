@@ -1,3 +1,7 @@
+## 0.2.1
+
+- correct types for using with strong-mode.
+
 ## 0.2.0
 
 -  add ability to get methods using strings, for example:

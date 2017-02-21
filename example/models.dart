@@ -8,6 +8,9 @@ part 'models.g.dart';
 class Person extends _$PersonSerializable {
   int id;
   String name;
+  var someDynamic;
+  Map someMap;
+  Map<String, int> otherMap;
 }
 
 @serializable

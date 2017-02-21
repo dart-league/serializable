@@ -3,7 +3,7 @@ export 'package:built_mirrors/built_mirrors.dart';
 
 /// Shorthand annotation of [Serializable] used to determine which classes will
 /// be processed by the generator
-const serializable = const Serializable();
+const Serializable serializable = const Serializable();
 
 /// annotation used to determine which files will be processed by the generator
 class Serializable extends Reflectable {
@@ -34,11 +34,11 @@ abstract class SerializableMap implements Map {
 
   /// Checks if the object has any attribute with the name of [key]
   @override
-  bool containsKey(String key) => keys.contains(key);
+  bool containsKey(Object key) => keys.contains(key);
 
   /// Check if any of the attributes contains the [value].
   @override
-  bool containsValue(String value) => values.contains(value);
+  bool containsValue(Object value) => values.contains(value);
 
   /// runs function [f] for each [attribute]-[value] pair
   @override

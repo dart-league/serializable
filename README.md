@@ -29,6 +29,9 @@ part 'models.g.dart';
 class Person extends _$PersonSerializable {
   int id;
   String name;
+  var someDynamic;
+  Map someMap;
+  Map<String, int> otherMap;
 }
 
 @serializable
@@ -112,22 +115,34 @@ part of example.person;
 // **************************************************************************
 
 abstract class _$PersonSerializable extends SerializableMap {
-  get id;
-  get name;
-  set id(v);
-  set name(v);
+  int get id;
+  String get name;
+  dynamic get someDynamic;
+  Map<dynamic, dynamic> get someMap;
+  Map<String, int> get otherMap;
+  void set id(int v);
+  void set name(String v);
+  void set someDynamic(dynamic v);
+  void set someMap(Map<dynamic, dynamic> v);
+  void set otherMap(Map<String, int> v);
 
-  operator [](String key) {
+  operator [](Object key) {
     switch (key) {
       case 'id':
         return id;
       case 'name':
         return name;
+      case 'someDynamic':
+        return someDynamic;
+      case 'someMap':
+        return someMap;
+      case 'otherMap':
+        return otherMap;
     }
     throwFieldNotFoundException(key, 'Person');
   }
 
-  operator []=(String key, value) {
+  operator []=(Object key, value) {
     switch (key) {
       case 'id':
         id = value;
@@ -135,11 +150,20 @@ abstract class _$PersonSerializable extends SerializableMap {
       case 'name':
         name = value;
         return;
+      case 'someDynamic':
+        someDynamic = value;
+        return;
+      case 'someMap':
+        someMap = value;
+        return;
+      case 'otherMap':
+        otherMap = value;
+        return;
     }
     throwFieldNotFoundException(key, 'Person');
   }
 
-  get keys => const ['id', 'name'];
+  get keys => const ['id', 'name', 'someDynamic', 'someMap', 'otherMap'];
 }
 
 // **************************************************************************
@@ -150,7 +174,7 @@ abstract class _$PersonSerializable extends SerializableMap {
 abstract class _$ClassWithMethodSerializable extends SerializableMap {
   void someMethod(String p1);
 
-  operator [](String key) {
+  operator [](Object key) {
     switch (key) {
       case 'someMethod':
         return someMethod;
@@ -158,7 +182,7 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
     throwFieldNotFoundException(key, 'ClassWithMethod');
   }
 
-  operator []=(String key, value) {
+  operator []=(Object key, value) {
     switch (key) {
     }
     throwFieldNotFoundException(key, 'ClassWithMethod');
@@ -176,8 +200,8 @@ output in console:
 p1['id']: 1
 p1['name']: person 1
 FieldNotFoundException: The key "no_existing" doesn't exist on class "Person"
-p1.ToMap(): {id: 1, name: person 1}
+p1.ToMap(): {id: 1, name: person 1, someDynamic: null, someMap: null, otherMap: null}
 p2: {id: 2, name: person 2}
-p1: {"id":1,"name":"person 1"}
+p1: {"id":1,"name":"person 1","someDynamic":null,"someMap":null,"otherMap":null}
 p3: {id: 3, name: person 3}
 ```
