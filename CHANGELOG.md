@@ -1,3 +1,9 @@
+## 0.3.0
+
+- remove `packageName` parameter from `phase`
+- upgrade `built_mirrors` to version `^0.2.0`
+- upgrade `build_test` to version `^0.5.0`
+
 ## 0.2.1
 
 - correct types for using with strong-mode.

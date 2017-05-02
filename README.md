@@ -93,10 +93,9 @@ import 'package:serializable/phase.dart';
 main() async {
   await build(new PhaseGroup()
     ..addPhase(
-    // In next line replace `serializable` for the name of your package
-    // and `example/*.dart` for the globs you want to use as input, for example `**/*.dart`
+    // In next line replace `example/*.dart` for the globs you want to use as input, for example `**/*.dart`
     // to take all the dart files of the project as input.
-        serializablePhase('serializable', const ['example/*.dart'])),
+        serializablePhase(const ['example/*.dart'])),
       deleteFilesByDefault: true);
 }
 ```
@@ -200,8 +199,8 @@ output in console:
 p1['id']: 1
 p1['name']: person 1
 FieldNotFoundException: The key "no_existing" doesn't exist on class "Person"
-p1.ToMap(): {id: 1, name: person 1, someDynamic: null, someMap: null, otherMap: null}
+p1.ToMap(): {id: 1, name: person 1}
 p2: {id: 2, name: person 2}
-p1: {"id":1,"name":"person 1","someDynamic":null,"someMap":null,"otherMap":null}
+p1: {"id":1,"name":"person 1"}
 p3: {id: 3, name: person 3}
 ```
