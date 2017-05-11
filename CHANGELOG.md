@@ -1,3 +1,7 @@
+## 0.3.1
+
+- make generator ignore static types
+
 ## 0.3.0
 
 - remove `packageName` parameter from `phase`

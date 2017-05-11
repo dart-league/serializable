@@ -17,10 +17,10 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     var superTypes = element.allSupertypes.where((st) => st.element.name != 'Object');
     var stAccessors = superTypes.expand((st) => st.accessors);
     var stMethods = superTypes.expand((st) => st.methods);
-    var stFields = superTypes.expand((st) => st.element.fields);
+    var stFields = superTypes.expand((st) => st.element.fields.where((f) => !f.isStatic));
 
     var className = element.name;
-    var fields = _distinctByName(element.fields.toList()..addAll(stFields));
+    var fields = _distinctByName(element.fields.where((f) => !f.isStatic).toList()..addAll(stFields));
     var accessors = _distinctByName<PropertyAccessorElement>(element.accessors.toList()..addAll(stAccessors));
     var getters = _distinctByName<PropertyAccessorElement>(
       accessors.where((a) => a.kind == ElementKind.GETTER && !a.isStatic));
