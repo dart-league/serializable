@@ -22,9 +22,12 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     var className = element.name;
     var fields = _distinctByName(element.fields.toList()..addAll(stFields));
     var accessors = _distinctByName<PropertyAccessorElement>(element.accessors.toList()..addAll(stAccessors));
-    var getters = _distinctByName<PropertyAccessorElement>(accessors.where((a) => a.kind == ElementKind.GETTER));
-    var setters = _distinctByName<PropertyAccessorElement>(accessors.where((a) => a.kind == ElementKind.SETTER));
-    var methods = _distinctByName<MethodElement>(element.methods.toList()..addAll(stMethods));
+    var getters = _distinctByName<PropertyAccessorElement>(
+      accessors.where((a) => a.kind == ElementKind.GETTER && !a.isStatic));
+    var setters = _distinctByName<PropertyAccessorElement>(
+      accessors.where((a) => a.kind == ElementKind.SETTER && !a.isStatic));
+    var methods = _distinctByName<MethodElement>(
+      element.methods.where((MethodElement e) => !e.isStatic).toList()..addAll(stMethods));
 
 
 
