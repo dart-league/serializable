@@ -8,9 +8,7 @@ environment:
   sdk: '>=1.8.0 <2.0.0'
 
 dependencies:
-  #built_mirrors: ^0.2.0
-  built_mirrors: 
-    git: git://github.com/jodinathan/built_mirrors.git
+  built_mirrors: ^0.2.0
 #  built_mirrors:
 #    path: ../built_mirrors
 
