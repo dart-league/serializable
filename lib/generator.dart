@@ -19,15 +19,19 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     var stMethods = superTypes.expand((st) => st.methods);
     var stFields = superTypes.expand((st) => st.element.fields);
 
+    var methodCheck = (MethodElement e) => !e.isStatic && !e.isOperator;
+    var accessorCheck = (ElementKind type) => (a) => a.kind == type && !a.isStatic && !a.isOperator && a.name != 'keys';
+
     var className = element.name;
     var fields = _distinctByName(element.fields.toList()..addAll(stFields));
     var accessors = _distinctByName<PropertyAccessorElement>(element.accessors.toList()..addAll(stAccessors));
     var getters = _distinctByName<PropertyAccessorElement>(
-      accessors.where((a) => a.kind == ElementKind.GETTER && !a.isStatic));
+      accessors.where(accessorCheck(ElementKind.GETTER)));
     var setters = _distinctByName<PropertyAccessorElement>(
-      accessors.where((a) => a.kind == ElementKind.SETTER && !a.isStatic));
+      accessors.where(accessorCheck(ElementKind.SETTER)));
     var methods = _distinctByName<MethodElement>(
-      element.methods.where((MethodElement e) => !e.isStatic).toList()..addAll(stMethods));
+      element.methods.where(methodCheck).toList()
+        ..addAll(stMethods.where(methodCheck)));
 
 
 
@@ -55,7 +59,7 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     throwFieldNotFoundException(key, '$className');
   }
 
-  get keys => ${useClassMirrors
+  Iterable<String> get keys => ${useClassMirrors
         ? '${className}ClassMirror.fields.keys;'
         : 'const [${fields.map((f) => "'${f.name}'").join(',')}];'}
 }''';
