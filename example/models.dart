@@ -28,5 +28,7 @@ class Person extends _$PersonSerializable {
 
 @serializable
 class ClassWithMethod extends _$ClassWithMethodSerializable {
-  void someMethod(String p1) {}
+  void sayHello(String name) {
+    print('Hello $name!');
+  }
 }

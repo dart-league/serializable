@@ -1,5 +1,7 @@
 # serializable
 
+[![Build Status](https://travis-ci.org/dart-league/serializable.svg?branch=master)](https://travis-ci.org/dart-league/serializable)
+
 This is a library that generates a serializable class from classes annotated with
 `@serializable` or `@Serializable()`.
 
@@ -49,7 +51,9 @@ class Person extends _$PersonSerializable {
 
 @serializable
 class ClassWithMethod extends _$ClassWithMethodSerializable {
-  void someMethod(String p1) {}
+  void sayHello(String name) {
+    print('Hello $name!');
+  }
 }
 
 ```
@@ -93,6 +97,8 @@ main() {
   var p3 = new Person()..fromMap(p3Map);
 
   print('p3: {id: ${p3.id}, name: ${p3.name}}'); // prints `p3: {id: 3, name: person 3}`
+
+  new ClassWithMethod()['sayHello']('world'); // prints `Hello world!`
 }
 ```
 
@@ -175,7 +181,8 @@ abstract class _$PersonSerializable extends SerializableMap {
     throwFieldNotFoundException(key, 'Person');
   }
 
-  get keys => const ['id', 'name', 'someDynamic', 'someMap', 'otherMap'];
+  Iterable<String> get keys =>
+      const ['id', 'name', 'someDynamic', 'someMap', 'otherMap'];
 }
 
 // **************************************************************************
@@ -184,12 +191,12 @@ abstract class _$PersonSerializable extends SerializableMap {
 // **************************************************************************
 
 abstract class _$ClassWithMethodSerializable extends SerializableMap {
-  void someMethod(String p1);
+  void sayHello(String name);
 
   operator [](Object key) {
     switch (key) {
-      case 'someMethod':
-        return someMethod;
+      case 'sayHello':
+        return sayHello;
     }
     throwFieldNotFoundException(key, 'ClassWithMethod');
   }
@@ -200,7 +207,7 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
     throwFieldNotFoundException(key, 'ClassWithMethod');
   }
 
-  get keys => const [];
+  Iterable<String> get keys => const [];
 }
 
 ```

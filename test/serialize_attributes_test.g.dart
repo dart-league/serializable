@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of example.person;
+part of serialize_attributes_test;
 
 // **************************************************************************
 // Generator: SerializableGenerator
@@ -66,12 +66,12 @@ abstract class _$PersonSerializable extends SerializableMap {
 // **************************************************************************
 
 abstract class _$ClassWithMethodSerializable extends SerializableMap {
-  void sayHello(String name);
+  int sum5(int val);
 
   operator [](Object key) {
     switch (key) {
-      case 'sayHello':
-        return sayHello;
+      case 'sum5':
+        return sum5;
     }
     throwFieldNotFoundException(key, 'ClassWithMethod');
   }
@@ -80,6 +80,56 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
     switch (key) {
     }
     throwFieldNotFoundException(key, 'ClassWithMethod');
+  }
+
+  Iterable<String> get keys => const [];
+}
+
+// **************************************************************************
+// Generator: SerializableGenerator
+// Target: class ClassWithOperator
+// **************************************************************************
+
+abstract class _$ClassWithOperatorSerializable extends SerializableMap {
+  int get val;
+  void set val(int v);
+
+  operator [](Object key) {
+    switch (key) {
+      case 'val':
+        return val;
+    }
+    throwFieldNotFoundException(key, 'ClassWithOperator');
+  }
+
+  operator []=(Object key, value) {
+    switch (key) {
+      case 'val':
+        val = value;
+        return;
+    }
+    throwFieldNotFoundException(key, 'ClassWithOperator');
+  }
+
+  Iterable<String> get keys => const ['val'];
+}
+
+// **************************************************************************
+// Generator: SerializableGenerator
+// Target: class ClassWithStatics
+// **************************************************************************
+
+abstract class _$ClassWithStaticsSerializable extends SerializableMap {
+  operator [](Object key) {
+    switch (key) {
+    }
+    throwFieldNotFoundException(key, 'ClassWithStatics');
+  }
+
+  operator []=(Object key, value) {
+    switch (key) {
+    }
+    throwFieldNotFoundException(key, 'ClassWithStatics');
   }
 
   Iterable<String> get keys => const [];

@@ -34,4 +34,6 @@ main() {
   var p3 = new Person()..fromMap(p3Map);
 
   print('p3: {id: ${p3.id}, name: ${p3.name}}'); // prints `p3: {id: 3, name: person 3}`
+
+  new ClassWithMethod()['sayHello']('world'); // prints `Hello world!`
 }

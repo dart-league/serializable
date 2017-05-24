@@ -1,3 +1,9 @@
+## 0.3.2
+
+- enhance tests
+- add `.travis.yml` file
+- skip operators during generation
+
 ## 0.3.1
 
 - make generator ignore static types

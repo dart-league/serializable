@@ -1,5 +1,7 @@
 # serializable
 
+[![Build Status](https://travis-ci.org/dart-league/serializable.svg?branch=master)](https://travis-ci.org/dart-league/serializable)
+
 This is a library that generates a serializable class from classes annotated with
 `@serializable` or `@Serializable()`.
 
