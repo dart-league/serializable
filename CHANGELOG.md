@@ -1,3 +1,7 @@
+## 0.3.3
+
+- upgrade `built_mirrors` to version `^0.2.2`
+
 ## 0.3.2
 
 - enhance tests
