@@ -1,3 +1,8 @@
+## 0.4.0
+
+- upgrade `built_mirrors` to version `^0.3.0`
+- upgrade `sourge_gen` to version `^0.6.0`
+
 ## 0.3.3
 
 - upgrade `built_mirrors` to version `^0.2.2`
