@@ -4,7 +4,6 @@ part of serialize_attributes_test;
 
 // **************************************************************************
 // Generator: SerializableGenerator
-// Target: class Person
 // **************************************************************************
 
 abstract class _$PersonSerializable extends SerializableMap {
@@ -60,11 +59,6 @@ abstract class _$PersonSerializable extends SerializableMap {
       const ['id', 'name', 'someDynamic', 'someMap', 'otherMap'];
 }
 
-// **************************************************************************
-// Generator: SerializableGenerator
-// Target: class ClassWithMethod
-// **************************************************************************
-
 abstract class _$ClassWithMethodSerializable extends SerializableMap {
   int sum5(int val);
 
@@ -84,11 +78,6 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
 
   Iterable<String> get keys => const [];
 }
-
-// **************************************************************************
-// Generator: SerializableGenerator
-// Target: class ClassWithOperator
-// **************************************************************************
 
 abstract class _$ClassWithOperatorSerializable extends SerializableMap {
   int get val;
@@ -113,11 +102,6 @@ abstract class _$ClassWithOperatorSerializable extends SerializableMap {
 
   Iterable<String> get keys => const ['val'];
 }
-
-// **************************************************************************
-// Generator: SerializableGenerator
-// Target: class ClassWithStatics
-// **************************************************************************
 
 abstract class _$ClassWithStaticsSerializable extends SerializableMap {
   operator [](Object key) {

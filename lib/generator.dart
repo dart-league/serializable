@@ -13,7 +13,7 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
   const SerializableGenerator({this.useClassMirrors = false});
 
   @override
-  Future<String> generateForAnnotatedElement(covariant ClassElement element, Serializable annotation, BuildStep buildStep) async {
+  Future<String> generateForAnnotatedElement(covariant ClassElement element, ConstantReader cr, BuildStep buildStep) async {
     var superTypes = element.allSupertypes.where((st) => st.element.name != 'Object');
     var stAccessors = superTypes.expand((st) => st.accessors);
     var stMethods = superTypes.expand((st) => st.methods);

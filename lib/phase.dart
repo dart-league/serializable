@@ -7,5 +7,5 @@ import 'package:source_gen/source_gen.dart';
 /// Example: {@example /tool/build.dart}
 serializablePhase([Iterable<String> globs = const ['bin/**.dart', 'web/**.dart', 'lib/**.dart']]) =>
     new Phase()..addAction(
-        new GeneratorBuilder(const [const SerializableGenerator()]),
+        new PartBuilder(const [const SerializableGenerator()]),
         new InputSet(new PackageGraph.forThisPackage().root.name, globs));

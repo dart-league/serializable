@@ -4,7 +4,6 @@ part of example.person;
 
 // **************************************************************************
 // Generator: SerializableGenerator
-// Target: class Person
 // **************************************************************************
 
 abstract class _$PersonSerializable extends SerializableMap {
@@ -59,11 +58,6 @@ abstract class _$PersonSerializable extends SerializableMap {
   Iterable<String> get keys =>
       const ['id', 'name', 'someDynamic', 'someMap', 'otherMap'];
 }
-
-// **************************************************************************
-// Generator: SerializableGenerator
-// Target: class ClassWithMethod
-// **************************************************************************
 
 abstract class _$ClassWithMethodSerializable extends SerializableMap {
   void sayHello(String name);
