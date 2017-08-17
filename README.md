@@ -110,12 +110,9 @@ import 'package:serializable/phase.dart';
 
 
 main() async {
-  await build(new PhaseGroup()
-    ..addPhase(
-    // In next line replace `example/*.dart` for the globs you want to use as input, for example `**/*.dart`
-    // to take all the dart files of the project as input.
-        serializablePhase(const ['example/*.dart'])),
-      deleteFilesByDefault: true);
+  // In next line replace `example/*.dart` for the globs you want to use as input, for example `**/*.dart`
+  // to take all the dart files of the project as input.
+  await build([serializablePhase(const ['example/*.dart'])],deleteFilesByDefault: true);
 }
 ```
 
@@ -129,7 +126,6 @@ part of example.person;
 
 // **************************************************************************
 // Generator: SerializableGenerator
-// Target: class Person
 // **************************************************************************
 
 abstract class _$PersonSerializable extends SerializableMap {
@@ -184,11 +180,6 @@ abstract class _$PersonSerializable extends SerializableMap {
   Iterable<String> get keys =>
       const ['id', 'name', 'someDynamic', 'someMap', 'otherMap'];
 }
-
-// **************************************************************************
-// Generator: SerializableGenerator
-// Target: class ClassWithMethod
-// **************************************************************************
 
 abstract class _$ClassWithMethodSerializable extends SerializableMap {
   void sayHello(String name);
