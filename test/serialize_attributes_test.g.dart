@@ -18,8 +18,8 @@ abstract class _$PersonSerializable extends SerializableMap {
   void set someMap(Map<dynamic, dynamic> v);
   void set otherMap(Map<String, int> v);
 
-  operator [](Object key) {
-    switch (key) {
+  operator [](Object __key) {
+    switch (__key) {
       case 'id':
         return id;
       case 'name':
@@ -31,28 +31,28 @@ abstract class _$PersonSerializable extends SerializableMap {
       case 'otherMap':
         return otherMap;
     }
-    throwFieldNotFoundException(key, 'Person');
+    throwFieldNotFoundException(__key, 'Person');
   }
 
-  operator []=(Object key, value) {
-    switch (key) {
+  operator []=(Object __key, __value) {
+    switch (__key) {
       case 'id':
-        id = value;
+        id = __value;
         return;
       case 'name':
-        name = value;
+        name = __value;
         return;
       case 'someDynamic':
-        someDynamic = value;
+        someDynamic = __value;
         return;
       case 'someMap':
-        someMap = value;
+        someMap = __value;
         return;
       case 'otherMap':
-        otherMap = value;
+        otherMap = __value;
         return;
     }
-    throwFieldNotFoundException(key, 'Person');
+    throwFieldNotFoundException(__key, 'Person');
   }
 
   Iterable<String> get keys =>
@@ -62,18 +62,18 @@ abstract class _$PersonSerializable extends SerializableMap {
 abstract class _$ClassWithMethodSerializable extends SerializableMap {
   int sum5(int val);
 
-  operator [](Object key) {
-    switch (key) {
+  operator [](Object __key) {
+    switch (__key) {
       case 'sum5':
         return sum5;
     }
-    throwFieldNotFoundException(key, 'ClassWithMethod');
+    throwFieldNotFoundException(__key, 'ClassWithMethod');
   }
 
-  operator []=(Object key, value) {
-    switch (key) {
+  operator []=(Object __key, __value) {
+    switch (__key) {
     }
-    throwFieldNotFoundException(key, 'ClassWithMethod');
+    throwFieldNotFoundException(__key, 'ClassWithMethod');
   }
 
   Iterable<String> get keys => const [];
@@ -83,37 +83,37 @@ abstract class _$ClassWithOperatorSerializable extends SerializableMap {
   int get val;
   void set val(int v);
 
-  operator [](Object key) {
-    switch (key) {
+  operator [](Object __key) {
+    switch (__key) {
       case 'val':
         return val;
     }
-    throwFieldNotFoundException(key, 'ClassWithOperator');
+    throwFieldNotFoundException(__key, 'ClassWithOperator');
   }
 
-  operator []=(Object key, value) {
-    switch (key) {
+  operator []=(Object __key, __value) {
+    switch (__key) {
       case 'val':
-        val = value;
+        val = __value;
         return;
     }
-    throwFieldNotFoundException(key, 'ClassWithOperator');
+    throwFieldNotFoundException(__key, 'ClassWithOperator');
   }
 
   Iterable<String> get keys => const ['val'];
 }
 
 abstract class _$ClassWithStaticsSerializable extends SerializableMap {
-  operator [](Object key) {
-    switch (key) {
+  operator [](Object __key) {
+    switch (__key) {
     }
-    throwFieldNotFoundException(key, 'ClassWithStatics');
+    throwFieldNotFoundException(__key, 'ClassWithStatics');
   }
 
-  operator []=(Object key, value) {
-    switch (key) {
+  operator []=(Object __key, __value) {
+    switch (__key) {
     }
-    throwFieldNotFoundException(key, 'ClassWithStatics');
+    throwFieldNotFoundException(__key, 'ClassWithStatics');
   }
 
   Iterable<String> get keys => const [];

@@ -44,19 +44,19 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
   ${setters.map((s) => 'void set ${s.displayName}(${s.type.normalParameterTypes[0]} v);').join('\n')}
   ${methods.map((m) => '${m.returnType} ${m.name}(${m.parameters.map((p) => p.computeNode()).join(',')});').join('\n')}
 
-  operator [](Object key) {
-    switch(key) {
+  operator [](Object __key) {
+    switch(__key) {
       ${getters.map((a) => "case '${a.name}': return ${a.name};").join('\n')}
       ${methods.map((a) => "case '${a.name}': return ${a.name};").join('\n')}
     }
-    throwFieldNotFoundException(key, '$className');
+    throwFieldNotFoundException(__key, '$className');
   }
 
-  operator []=(Object key, value) {
-    switch(key) {
-      ${setters.map((a) => "case '${a.displayName}': ${a.displayName} = value; return;").join('\n')}
+  operator []=(Object __key, __value) {
+    switch(__key) {
+      ${setters.map((a) => "case '${a.displayName}': ${a.displayName} = __value; return;").join('\n')}
     }
-    throwFieldNotFoundException(key, '$className');
+    throwFieldNotFoundException(__key, '$className');
   }
 
   Iterable<String> get keys => ${useClassMirrors

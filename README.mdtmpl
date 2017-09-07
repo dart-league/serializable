@@ -18,7 +18,7 @@ dependencies:
   ...
 ```
 
-3. create a file in `bin` folder called `person.dart` and put next code on it:
+3. create a file in `bin` folder called `models.dart` and put next code on it:
 
 {@example example/models.dart}
 
@@ -30,7 +30,7 @@ dependencies:
 
 {@example tool/build.dart}
 
-6. run `tool/build.dart`. Then you will see that the file `bin/person.g.dart`
+6. run `tool/build.dart`. Then you will see that the file `bin/models.g.dart`
 has been generated and it will contains the next code:
 
 {@example example/models.g.dart}

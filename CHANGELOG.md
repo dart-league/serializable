@@ -1,3 +1,7 @@
+## 0.6.1
+
+- rename `key` to `__key` and `value` to `__value` in generator
+
 ## 0.6.0
 
 - upgrade `built_mirrors` to version `^0.5.0`
