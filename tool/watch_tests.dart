@@ -1,7 +1,7 @@
 import 'package:build_runner/build_runner.dart';
-import 'package:serializable/phase.dart';
+import 'package:serializable/action.dart';
 
 
 main() async {
-  await watch([serializablePhase(const ['test/**.dart'])], deleteFilesByDefault: true);
+  await watch([serializableAction(const ['test/**.dart'])], deleteFilesByDefault: true);
 }

@@ -1,3 +1,9 @@
+## 0.7.0
+
+- upgrade to `built_mirrors@0.6.0`
+- rename `phase.dart` to `action.dart`
+- rename `serializablePhase` to `serializableAction`
+
 ## 0.6.1
 
 - rename `key` to `__key` and `value` to `__value` in generator

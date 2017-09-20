@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:analyzer/analyzer.dart';
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
@@ -42,7 +43,7 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     }
   ${getters.map((g) => '${g.returnType} get ${g.name};').join('\n')}
   ${setters.map((s) => 'void set ${s.displayName}(${s.type.normalParameterTypes[0]} v);').join('\n')}
-  ${methods.map((m) => '${m.returnType} ${m.name}(${m.parameters.map((p) => p.computeNode()).join(',')});').join('\n')}
+  ${methods.map((m) => '${m.returnType} ${m.name}(${_renderParameters(m.parameters)});').join('\n')}
 
   operator [](Object __key) {
     switch(__key) {
@@ -72,4 +73,15 @@ List<T> _distinctByName<T extends Element>(Iterable<T> elements) {
     if (!result.any((e) => e.name == element.name)) result.add(element);
   }
   return result;
+}
+
+String _renderParameters(List<ParameterElement> parameters) {
+  var aux = [];
+  var requiredParams = parameters.where((p) => p.parameterKind == ParameterKind.REQUIRED).map((p) => p.computeNode()).join(',');
+  if (requiredParams.isNotEmpty) aux.add(requiredParams);
+  var positionalParams = parameters.where((p) => p.parameterKind == ParameterKind.POSITIONAL).map((p) => p.computeNode()).join(',');
+  if (positionalParams.isNotEmpty) aux.add('[$positionalParams]');
+  var namedParams = parameters.where((p) => p.parameterKind == ParameterKind.NAMED).map((p) => p.computeNode()).join(',');
+  if (namedParams.isNotEmpty) aux.add('{$namedParams}');
+  return aux.join(',');
 }

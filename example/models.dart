@@ -19,11 +19,24 @@ class Person extends _$PersonSerializable {
   Map someMap;
   Map<String, int> otherMap;
 
+  Address address;
+
+  List<Address> otherAddresses;
+
   static final Map<String, SimpleType> list = {
     'minutes': new SimpleType('58c42d14f17f33ec6e2020ad', 'minutes'),
     'hours': new SimpleType('58c42d26f17f33ec6e2020ae', 'hours'),
     'percent': new SimpleType('58c42d4bf17f33ec6e2020b3', 'percent')
   };
+}
+
+@serializable
+class Address extends _$AddressSerializable {
+  int id;
+  String street;
+  String zip;
+  String city;
+  String state;
 }
 
 @serializable
