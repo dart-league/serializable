@@ -2,4 +2,8 @@ language: dart
 dart:
   - stable
   - dev
-script: dart tool/build_tests.dart && pub run test
+
+dart_task:
+  # Run the tests -- include the default-skipped presubmit tests
+  - test: --run-skipped
+  - dartanalyzer
