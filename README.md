@@ -100,12 +100,17 @@ main() {
 
   print('p1.ToMap(): ${p1.toMap()}'); // prints `{id: 1, name: person 1}`
   var p2 = new Person()
-    ..fromMap({"id": 2, "name": "person 2", 'address': {'id': 1}});
+    ..fromMap({"id": 2, "name": "person 2", 'address': new Address()..fromMap({'id': 1})});
   print('p2: {id: ${p2.id}, name: ${p2.name}, address.id: ${p2.address
       .id}}'); // prints `p2: {id: 2, name: person 2, address.id: 1}`
 
   var p3 = new Person()
-    ..fromMap({"id": 3, "name": "person 3", 'address': {'id': 3}, 'otherAddresses': [{'id': 4, 'street': 'street 4'}]});
+    ..fromMap({
+      "id": 3,
+      "name": "person 3",
+      'address': new Address()..fromMap({'id': 3}),
+      'otherAddresses': [{'id': 4, 'street': 'street 4'}].map((e) => new Address()..fromMap(e)).toList()
+    });
   print('p3: {id: ${p3.id}, name: ${p3.name}, address.id: ${p3.address.id}, otherAddresses[0].street:'
       ' ${p3.otherAddresses[0].street}}'); // prints `p3: {id: 3, name: person 3, address.id: 3}`
 
