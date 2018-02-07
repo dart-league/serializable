@@ -1,0 +1,9 @@
+builders:
+  serializable_builder:
+    target: :_serializable
+    import: package:serializable/builder.dart
+    builder_factories: [builder]
+    build_to: source
+    auto_apply: root_package
+    build_extensions:
+      .dart: [.g.dart]

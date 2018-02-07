@@ -1,3 +1,7 @@
+## 0.8.1
+
+- add `serializable_core` package
+
 ## 0.8.0
 
 - upgrade to `built_mirrors@0.7.0`
