@@ -1,3 +1,7 @@
+## 0.9.1
+
+- add generics support
+
 ## 0.9.0
 
 - Add missing methods to `SerializableMap`
