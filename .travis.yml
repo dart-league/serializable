@@ -1,6 +1,6 @@
 language: dart
 dart:
-  - stable
+#  - stable
   - dev
 
 dart_task:

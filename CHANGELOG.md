@@ -1,3 +1,7 @@
+# 0.9.2
+
+- upgrade `sour_gen` to `^0.8.0`
+
 ## 0.9.1
 
 - add generics support
