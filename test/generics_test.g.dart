@@ -3,7 +3,7 @@
 part of just_generics_test;
 
 // **************************************************************************
-// Generator: SerializableGenerator
+// SerializableGenerator
 // **************************************************************************
 
 abstract class _$GenClassSerializable<T> extends SerializableMap {

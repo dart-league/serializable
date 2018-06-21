@@ -3,7 +3,7 @@
 part of example.person;
 
 // **************************************************************************
-// Generator: SerializableGenerator
+// SerializableGenerator
 // **************************************************************************
 
 abstract class _$PersonSerializable extends SerializableMap {

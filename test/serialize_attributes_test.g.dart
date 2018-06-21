@@ -3,7 +3,7 @@
 part of serialize_attributes_test;
 
 // **************************************************************************
-// Generator: SerializableGenerator
+// SerializableGenerator
 // **************************************************************************
 
 abstract class _$PersonSerializable extends SerializableMap {
