@@ -7,35 +7,35 @@ This is a library that generates a serializable class from classes annotated wit
 
 ## Getting Started
 
-1. Create a new dart project.
-2. add `serializable` dependency to your `pubspec.yaml`.
+1\. Create a new dart project.
+2\. add `serializable` dependency to your dependencies and `build_runner` to your dev_dependencies in the file `pubspec.yaml` .
 
 ```yaml
 ...
 dependencies:
   ...
-  serializable: any
+  serializable: any   # change by the latest dependency
+  ...
+dev_dependencies:
+  ...
+  build_runner: any   # change by the latest dependency
   ...
 ```
 
-3. create a file in `bin` folder called `models.dart` and put next code on it:
+3\. create a file in `bin` folder called `models.dart` and put next code on it:
 
 {@example example/models.dart}
 
-4. create a file in `bin` folder called `main.dart` and put next code on it:
+4\. create a file in `bin` folder called `main.dart` and put next code on it:
 
 {@example example/main.dart}
 
-5. create a file in `tool` folder called `build.dart` and put next code on it:
-
-{@example tool/build.dart}
-
-6. run `tool/build.dart`. Then you will see that the file `bin/models.g.dart`
+5\. run `pub run build_runner build`. Then you will see that the file `bin/models.g.dart`
 has been generated and it will contains the next code:
 
 {@example example/models.g.dart}
 
-7. Finally you can run the file `bin/main.dart`. If everything is ok you will see next
+6\. Finally you can run the file `bin/main.dart`. If everything is ok you will see next
 output in console:
 
 ```

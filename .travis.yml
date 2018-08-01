@@ -3,7 +3,4 @@ dart:
 #  - stable
   - dev
 
-dart_task:
-  # Run the tests -- include the default-skipped presubmit tests
-  - test: --run-skipped
-  - dartanalyzer
+script: dartanalyzer --fatal-warnings . && pub run build_runner test --delete-conflicting-outputs

@@ -58,7 +58,7 @@ main() {
       'otherMap': p1.otherMap
     });
 
-    expect(() => p1['no_existing'], throwsA(new isInstanceOf<FieldNotFoundException>()));
+    expect(() => p1['no_existing'], throwsA(new TypeMatcher<FieldNotFoundException>()));
   });
 
   test('serialize methods', () {
@@ -70,13 +70,13 @@ main() {
     var cwo = new ClassWithOperator()
       ..val = 5;
 
-    expect(() => cwo['operator+'], throwsA(new isInstanceOf<FieldNotFoundException>()));
+    expect(() => cwo['operator+'], throwsA(new TypeMatcher<FieldNotFoundException>()));
   });
 
   test("don't serialize static methods", () {
     var cws = new ClassWithStatics();
 
-    expect(() => cws['val'], throwsA(new isInstanceOf<FieldNotFoundException>()));
-    expect(() => cws['someMethod'](), throwsA(new isInstanceOf<FieldNotFoundException>()));
+    expect(() => cws['val'], throwsA(new TypeMatcher<FieldNotFoundException>()));
+    expect(() => cws['someMethod'](), throwsA(new TypeMatcher<FieldNotFoundException>()));
   });
 }

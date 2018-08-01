@@ -7,18 +7,22 @@ This is a library that generates a serializable class from classes annotated wit
 
 ## Getting Started
 
-1. Create a new dart project.
-2. add `serializable` dependency to your `pubspec.yaml`.
+1\. Create a new dart project.
+2\. add `serializable` dependency to your dependencies and `build_runner` to your dev_dependencies in the file `pubspec.yaml` .
 
 ```yaml
 ...
 dependencies:
   ...
-  serializable: any
+  serializable: any   # change by the latest dependency
+  ...
+dev_dependencies:
+  ...
+  build_runner: any   # change by the latest dependency
   ...
 ```
 
-3. create a file in `bin` folder called `models.dart` and put next code on it:
+3\. create a file in `bin` folder called `models.dart` and put next code on it:
 
 ```dart
 library example.person;
@@ -71,7 +75,7 @@ class ClassWithMethod extends _$ClassWithMethodSerializable {
 
 ```
 
-4. create a file in `bin` folder called `main.dart` and put next code on it:
+4\. create a file in `bin` folder called `main.dart` and put next code on it:
 
 ```dart
 import 'dart:convert';
@@ -117,9 +121,9 @@ main() {
   // you can use it to convert the objects to/from JSON using
   // `dart:convert` library directly
 
-  print('p1: ${JSON.encode(p1)}'); // prints `p1: {"id":1,"name":"person 1"}`
+  print('p1: ${jsonEncode(p1)}'); // prints `p1: {"id":1,"name":"person 1"}`
 
-  var p4Map = JSON.decode('{"id": 3, "name": "person 3"}');
+  var p4Map = jsonDecode('{"id": 3, "name": "person 3"}');
   var p4 = new Person()
     ..fromMap(p4Map);
 
@@ -130,22 +134,7 @@ main() {
 
 ```
 
-5. create a file in `tool` folder called `build.dart` and put next code on it:
-
-```dart
-import 'package:build_runner/build_runner.dart';
-import 'package:serializable/action.dart';
-
-
-main() async {
-  // In next line replace `example/*.dart` for the globs you want to use as input, for example `**/*.dart`
-  // to take all the dart files of the project as input.
-  await build([serializableAction(const ['example/*.dart'])],deleteFilesByDefault: true);
-}
-
-```
-
-6. run `tool/build.dart`. Then you will see that the file `bin/models.g.dart`
+5\. run `pub run build_runner build`. Then you will see that the file `bin/models.g.dart`
 has been generated and it will contains the next code:
 
 ```dart
@@ -154,7 +143,7 @@ has been generated and it will contains the next code:
 part of example.person;
 
 // **************************************************************************
-// Generator: SerializableGenerator
+// SerializableGenerator
 // **************************************************************************
 
 abstract class _$PersonSerializable extends SerializableMap {
@@ -305,7 +294,7 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
 
 ```
 
-7. Finally you can run the file `bin/main.dart`. If everything is ok you will see next
+6\. Finally you can run the file `bin/main.dart`. If everything is ok you will see next
 output in console:
 
 ```

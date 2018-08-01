@@ -41,9 +41,9 @@ main() {
   // you can use it to convert the objects to/from JSON using
   // `dart:convert` library directly
 
-  print('p1: ${JSON.encode(p1)}'); // prints `p1: {"id":1,"name":"person 1"}`
+  print('p1: ${jsonEncode(p1)}'); // prints `p1: {"id":1,"name":"person 1"}`
 
-  var p4Map = JSON.decode('{"id": 3, "name": "person 3"}');
+  var p4Map = jsonDecode('{"id": 3, "name": "person 3"}');
   var p4 = new Person()
     ..fromMap(p4Map);
 
