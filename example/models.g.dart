@@ -54,16 +54,17 @@ abstract class _$PersonSerializable extends SerializableMap {
         someDynamic = __value;
         return;
       case 'someMap':
-        someMap = __value;
+        someMap = fromSerialized(__value, () => new Map<dynamic, dynamic>());
         return;
       case 'otherMap':
-        otherMap = __value;
+        otherMap = fromSerialized(__value, () => new Map<String, int>());
         return;
       case 'address':
-        address = __value;
+        address = fromSerialized(__value, () => new Address());
         return;
       case 'otherAddresses':
-        otherAddresses = __value;
+        otherAddresses = fromSerialized(
+            __value, [() => new List<Address>(), () => new Address()]);
         return;
     }
     throwFieldNotFoundException(__key, 'Person');

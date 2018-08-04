@@ -1,3 +1,9 @@
+# 0.11.0
+
+- add `from` methods
+- upgrade `built_mirrors` to `^0.10.0`
+- use `SerializedName` from `built_mirrors`
+
 # 0.10.0
 
 - upgrade `source_gen` to version `^0.9.0`
