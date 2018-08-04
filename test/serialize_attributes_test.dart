@@ -2,6 +2,7 @@ library serialize_attributes_test;
 
 import 'package:serializable/serializable.dart';
 import 'package:test/test.dart';
+import 'dart:convert';
 
 part 'serialize_attributes_test.g.dart';
 
@@ -59,6 +60,16 @@ main() {
     });
 
     expect(() => p1['no_existing'], throwsA(new TypeMatcher<FieldNotFoundException>()));
+
+    expect(jsonEncode(p1), '{"id":1,"name":"person 1","someDynamic":1.1,"someMap":{"foo":"bar"},"otherMap":{"foo":1}}');
+
+    var p2 = Person()
+      ..fromMap(jsonDecode('{"id":2,"name":"person 2","someDynamic":2.2,"someMap":{"foo":"bar"},"otherMap":{"foo":2}}'));
+    expect(p2.id, 2);
+    expect(p2.name, 'person 2');
+    expect(p2.someDynamic, 2.2);
+    expect(p2.someMap, {'foo': 'bar'});
+    expect(p2.otherMap, {'foo': 2});
   });
 
   test('serialize methods', () {

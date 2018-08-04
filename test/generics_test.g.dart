@@ -32,10 +32,10 @@ abstract class _$GenClassSerializable<T> extends SerializableMap {
         data = __value;
         return;
       case 'list':
-        list = __value;
+        list = fromSerialized(__value, () => new List<T>());
         return;
       case 'mapT':
-        mapT = __value;
+        mapT = fromSerialized(__value, () => new Map<String, T>());
         return;
     }
     throwFieldNotFoundException(__key, 'GenClass');
