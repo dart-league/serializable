@@ -1,11 +1,11 @@
 name: serializable
-version: 0.11.0
+version: 0.11.0+1
 description: generates a serializable class from classes using `source_gen` package
 author: Luis Vargas <luisvargastijerino@gmail.com>
 homepage: https://github.com/dart-league/serializable
 
 environment:
-  sdk: '>=2.0.0-dev <2.0.0'
+  sdk: '>=2.0.0-dev <3.0.0'
 
 dependencies:
   analyzer: ^0.32.0
