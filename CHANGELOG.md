@@ -1,3 +1,11 @@
+# 0.11.1
+
+- upgrade `analyzer` to version `^0.33.0`
+- upgrade `build_runner` to version `^1.0.0`
+- upgrade `build` to version `^1.0.1`
+- upgrade `built_mirrors_core` to version `^0.10.1`
+- upgrade `serializable_core` to version `^0.11.1`
+
 # 0.11.0
 
 - add `from` methods
