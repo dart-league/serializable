@@ -1,3 +1,8 @@
+# 0.11.2
+
+- upgrade `serializable_core` to version `^0.11.2`
+- upgrade `analyzer` to version `^0.34.0`
+
 # 0.11.1
 
 - upgrade `analyzer` to version `^0.33.0`
