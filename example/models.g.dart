@@ -14,13 +14,13 @@ abstract class _$PersonSerializable extends SerializableMap {
   Map<String, int> get otherMap;
   Address get address;
   List<Address> get otherAddresses;
-  void set id(int v);
-  void set name(String v);
-  void set someDynamic(dynamic v);
-  void set someMap(Map<dynamic, dynamic> v);
-  void set otherMap(Map<String, int> v);
-  void set address(Address v);
-  void set otherAddresses(List<Address> v);
+  set id(int v);
+  set name(String v);
+  set someDynamic(dynamic v);
+  set someMap(Map<dynamic, dynamic> v);
+  set otherMap(Map<String, int> v);
+  set address(Address v);
+  set otherAddresses(List<Address> v);
 
   operator [](Object __key) {
     switch (__key) {
@@ -87,11 +87,11 @@ abstract class _$AddressSerializable extends SerializableMap {
   String get zip;
   String get city;
   String get state;
-  void set id(int v);
-  void set street(String v);
-  void set zip(String v);
-  void set city(String v);
-  void set state(String v);
+  set id(int v);
+  set street(String v);
+  set zip(String v);
+  set city(String v);
+  set state(String v);
 
   operator [](Object __key) {
     switch (__key) {

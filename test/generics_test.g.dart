@@ -10,9 +10,9 @@ abstract class _$GenClassSerializable<T> extends SerializableMap {
   T get data;
   List<T> get list;
   Map<String, T> get mapT;
-  void set data(T v);
-  void set list(List<T> v);
-  void set mapT(Map<String, T> v);
+  set data(T v);
+  set list(List<T> v);
+  set mapT(Map<String, T> v);
 
   operator [](Object __key) {
     switch (__key) {

@@ -1,9 +1,13 @@
-# 0.11.2
+## 0.11.2+1
+
+- reorder `SerializableMap` attributes
+
+## 0.11.2
 
 - upgrade `serializable_core` to version `^0.11.2`
 - upgrade `analyzer` to version `^0.34.0`
 
-# 0.11.1
+## 0.11.1
 
 - upgrade `analyzer` to version `^0.33.0`
 - upgrade `build_runner` to version `^1.0.0`
@@ -11,13 +15,13 @@
 - upgrade `built_mirrors_core` to version `^0.10.1`
 - upgrade `serializable_core` to version `^0.11.1`
 
-# 0.11.0
+## 0.11.0
 
 - add `from` methods
 - upgrade `built_mirrors` to `^0.10.0`
 - use `SerializedName` from `built_mirrors`
 
-# 0.10.0
+## 0.10.0
 
 - upgrade `source_gen` to version `^0.9.0`
 - upgrade `build_runner` to version `^0.9.0`

@@ -12,11 +12,11 @@ abstract class _$PersonSerializable extends SerializableMap {
   dynamic get someDynamic;
   Map<dynamic, dynamic> get someMap;
   Map<String, int> get otherMap;
-  void set id(int v);
-  void set name(String v);
-  void set someDynamic(dynamic v);
-  void set someMap(Map<dynamic, dynamic> v);
-  void set otherMap(Map<String, int> v);
+  set id(int v);
+  set name(String v);
+  set someDynamic(dynamic v);
+  set someMap(Map<dynamic, dynamic> v);
+  set otherMap(Map<String, int> v);
 
   operator [](Object __key) {
     switch (__key) {
@@ -81,7 +81,7 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
 
 abstract class _$ClassWithOperatorSerializable extends SerializableMap {
   int get val;
-  void set val(int v);
+  set val(int v);
 
   operator [](Object __key) {
     switch (__key) {
