@@ -1,4 +1,4 @@
-library example.person;
+library example.models;
 
 import 'package:serializable/serializable.dart';
 

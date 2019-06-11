@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of example.person;
+part of example.models;
 
 // **************************************************************************
 // SerializableGenerator

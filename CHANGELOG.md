@@ -1,3 +1,7 @@
+## 0.11.3
+
+- upgrade `analyzer` to version `^0.36.0`
+
 ## 0.11.2+1
 
 - reorder `SerializableMap` attributes
