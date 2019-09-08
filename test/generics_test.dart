@@ -17,7 +17,7 @@ class GenClass<T> extends _$GenClassSerializable<T> {
 void main() {
   group('generics: ', (){
     test('can create', (){
-      var cool = new GenClass<String>();
+      var cool = GenClass<String>();
       cool['data'] = 'hello, world!';
       cool['list'] = ['hello', 'world'];
       cool['mapT'] = {'hello': 'world'};

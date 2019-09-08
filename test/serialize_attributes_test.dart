@@ -39,7 +39,7 @@ class ClassWithStatics extends _$ClassWithStaticsSerializable {
 
 main() {
   test('serialize attributes', () {
-    var p1 = new Person()
+    var p1 = Person()
       ..id = 1
       ..name = 'person 1'
       ..someDynamic = 1.1
@@ -59,7 +59,7 @@ main() {
       'otherMap': p1.otherMap
     });
 
-    expect(() => p1['no_existing'], throwsA(new TypeMatcher<FieldNotFoundException>()));
+    expect(() => p1['no_existing'], throwsA(TypeMatcher<FieldNotFoundException>()));
 
     expect(jsonEncode(p1), '{"id":1,"name":"person 1","someDynamic":1.1,"someMap":{"foo":"bar"},"otherMap":{"foo":1}}');
 
@@ -73,21 +73,21 @@ main() {
   });
 
   test('serialize methods', () {
-    var cwm = new ClassWithMethod();
+    var cwm = ClassWithMethod();
     expect(cwm['sum5'](5), 10);
   });
 
   test("don't serialize operator methods", () {
-    var cwo = new ClassWithOperator()
+    var cwo = ClassWithOperator()
       ..val = 5;
 
-    expect(() => cwo['operator+'], throwsA(new TypeMatcher<FieldNotFoundException>()));
+    expect(() => cwo['operator+'], throwsA(TypeMatcher<FieldNotFoundException>()));
   });
 
   test("don't serialize static methods", () {
-    var cws = new ClassWithStatics();
+    var cws = ClassWithStatics();
 
-    expect(() => cws['val'], throwsA(new TypeMatcher<FieldNotFoundException>()));
-    expect(() => cws['someMethod'](), throwsA(new TypeMatcher<FieldNotFoundException>()));
+    expect(() => cws['val'], throwsA(TypeMatcher<FieldNotFoundException>()));
+    expect(() => cws['someMethod'](), throwsA(TypeMatcher<FieldNotFoundException>()));
   });
 }

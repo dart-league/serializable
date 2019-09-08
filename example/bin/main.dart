@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'models.dart';
 
 main() {
-  var p1 = new Person()
+  var p1 = Person()
     ..id = 1
     ..name = 'person 1';
 
@@ -23,17 +23,17 @@ main() {
   // you can also use it to convert the object to/from Map
 
   print('p1.ToMap(): ${p1.toMap()}'); // prints `{id: 1, name: person 1}`
-  var p2 = new Person()
-    ..fromMap({"id": 2, "name": "person 2", 'address': new Address()..fromMap({'id': 1})});
+  var p2 = Person()
+    ..fromMap({"id": 2, "name": "person 2", 'address': Address()..fromMap({'id': 1})});
   print('p2: {id: ${p2.id}, name: ${p2.name}, address.id: ${p2.address
       .id}}'); // prints `p2: {id: 2, name: person 2, address.id: 1}`
 
-  var p3 = new Person()
+  var p3 = Person()
     ..fromMap({
       "id": 3,
       "name": "person 3",
-      'address': new Address()..fromMap({'id': 3}),
-      'otherAddresses': [{'id': 4, 'street': 'street 4'}].map((e) => new Address()..fromMap(e)).toList()
+      'address': Address()..fromMap({'id': 3}),
+      'otherAddresses': [{'id': 4, 'street': 'street 4'}].map((e) => Address()..fromMap(e)).toList()
     });
   print('p3: {id: ${p3.id}, name: ${p3.name}, address.id: ${p3.address.id}, otherAddresses[0].street:'
       ' ${p3.otherAddresses[0].street}}'); // prints `p3: {id: 3, name: person 3, address.id: 3}`
@@ -44,10 +44,10 @@ main() {
   print('p1: ${jsonEncode(p1)}'); // prints `p1: {"id":1,"name":"person 1"}`
 
   var p4Map = jsonDecode('{"id": 3, "name": "person 3"}');
-  var p4 = new Person()
+  var p4 = Person()
     ..fromMap(p4Map);
 
   print('p4: {id: ${p4.id}, name: ${p4.name}}'); // prints `p4: {id: 4, name: person 4}`
 
-  new ClassWithMethod()['sayHello']('world'); // prints `Hello world!`
+  ClassWithMethod()['sayHello']('world'); // prints `Hello world!`
 }

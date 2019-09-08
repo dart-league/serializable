@@ -1,9 +1,16 @@
+targets:
+  $default:
+    builders:
+      serializable:
+        generate_for: [example/**, test/**]
+      built_mirrors:
+        generate_for:
+          exclude: ['**']
 builders:
-  serializable_builder:
-    target: :_serializable
+  serializable:
     import: package:serializable/builder.dart
     builder_factories: [builder]
-    build_to: source
-    auto_apply: root_package
+    auto_apply: dependents
     build_extensions:
-      .dart: [.g.dart]
+      .dart: [.serializable.g.part]
+    applies_builders: [source_gen|combining_builder]

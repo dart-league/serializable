@@ -40,21 +40,21 @@ class ListWithImmutableClass extends _$ListWithImmutableClassSerializable {
 main() {
   test('deserialize: immutable class.', () {
     var map = jsonDecode('{"name":"test", "the_renamed": "test"}');
-    ImmutableClass test = new ImmutableClass(map['name'], map['the_renamed']);
+    ImmutableClass test = ImmutableClass(map['name'], map['the_renamed']);
     expect(test.name, equals("test"));
     expect(test.renamed, equals("test"));
   });
 
   test('deserialize: immutable class with optional parameters.', () {
     var map = jsonDecode('{"id": 1, "name": "test"}');
-    ImmutableWithOptionalParameters test = new ImmutableWithOptionalParameters(id: map['id'], name: map['name']);
+    ImmutableWithOptionalParameters test = ImmutableWithOptionalParameters(id: map['id'], name: map['name']);
     expect(test.id, equals(1));
     expect(test.name, equals("test"));
   });
 
   test('deserialize: immutable class with invalid parameter', () {
       var map = jsonDecode('{"name":"failure"}');
-      var test = new ImmutableClassInvalidParameter(map['aName']);
+      var test = ImmutableClassInvalidParameter(map['aName']);
       expect(test['name'], null);
   });
 }

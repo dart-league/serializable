@@ -24,9 +24,9 @@ class Person extends _$PersonSerializable {
   List<Address> otherAddresses;
 
   static final Map<String, SimpleType> list = {
-    'minutes': new SimpleType('58c42d14f17f33ec6e2020ad', 'minutes'),
-    'hours': new SimpleType('58c42d26f17f33ec6e2020ae', 'hours'),
-    'percent': new SimpleType('58c42d4bf17f33ec6e2020b3', 'percent')
+    'minutes': SimpleType('58c42d14f17f33ec6e2020ad', 'minutes'),
+    'hours': SimpleType('58c42d26f17f33ec6e2020ae', 'hours'),
+    'percent': SimpleType('58c42d4bf17f33ec6e2020b3', 'percent')
   };
 }
 

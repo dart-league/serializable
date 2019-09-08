@@ -95,12 +95,12 @@ abstract class _$ListWithImmutableClassSerializable extends SerializableMap {
     switch (__key) {
       case 'immutable':
         immutable = fromSerialized(__value,
-            () => new ImmutableClass(__value['name'], __value['the_renamed']));
+            () => ImmutableClass(__value['name'], __value['the_renamed']));
         return;
       case 'immutables':
         immutables = fromSerialized(__value, [
-          () => new List<ImmutableClass>(),
-          () => new ImmutableClass(__value['name'], __value['the_renamed'])
+          () => List<ImmutableClass>(),
+          () => ImmutableClass(__value['name'], __value['the_renamed'])
         ]);
         return;
     }
