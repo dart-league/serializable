@@ -1,3 +1,8 @@
+## 0.13.0
+
+- Upgrade `build_test` to `^1.2.0`
+- Upgrade `built_mirrors` to `^0.12.0`
+
 ## 0.12.0
 
 - Add `analysis_options` and check for unnecessary `new` and `const` keywords
