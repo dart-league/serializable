@@ -1,3 +1,8 @@
+## 0.14.0
+
+- Upgrade `analyzer` to `^0.40.0`
+- Upgrade `built_mirrors` to `^0.13.0`
+
 ## 0.13.0
 
 - Upgrade `build_test` to `^1.2.0`

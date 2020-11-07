@@ -36,11 +36,11 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
         element.methods.where(methodCheck).toList()..addAll(stMethods.where(methodCheck)));
     var typeGenerics = _distinctByName<TypeParameterElement>(element.typeParameters);
 
-    return '''abstract class _\$${className}Serializable${typeGenerics.isNotEmpty ? '<' + typeGenerics.map((x) => x.type.name).join(',') + '>' : ''} extends SerializableMap {
+    return '''abstract class _\$${className}Serializable${typeGenerics.isNotEmpty ? '<' + typeGenerics.map((x) => x.declaration.name).join(',') + '>' : ''} extends SerializableMap {
   ${element.constructors.where((c) => c.isConst).map((c) => 'const _\$${className}Serializable${c.name.isNotEmpty ? '.' + c.name : ''}();').join('\n')}
-  ${getters.map((g) => '${g.returnType} get ${g.name};').join('\n')}
-  ${setters.map((s) => 'set ${s.displayName}(${s.type.normalParameterTypes[0]} v);').join('\n')}
-  ${methods.map((m) => '${m.returnType} ${m.name}(${_renderParameters(m.parameters)});').join('\n')}
+  ${getters.map((g) => '${g.returnType.getDisplayString(withNullability: false)} get ${g.name};').join('\n')}
+  ${setters.map((s) => 'set ${s.displayName}(${s.type.normalParameterTypes[0].getDisplayString(withNullability: false)} v);').join('\n')}
+  ${methods.map((m) => '${m.returnType.getDisplayString(withNullability: false)} ${m.name}(${_renderParameters(m.parameters)});').join('\n')}
 
   operator [](Object __key) {
     switch(__key) {
@@ -77,7 +77,7 @@ List<T> _distinctByName<T extends Element>(Iterable<T> elements) {
 
 String _renderParameters(List<ParameterElement> parameters) {
   var aux = [];
-  var requiredParams = parameters.where((p) => p.isNotOptional).map((p) => p.toString()).join(',');
+  var requiredParams = parameters.where((p) => p.isNotOptional).map((p) => p.getDisplayString(withNullability: false)).join(',');
   if (requiredParams.isNotEmpty) aux.add(requiredParams);
   var positionalParams = parameters.where((p) => p.isOptionalPositional).map((p) => p.toString()).join(',');
   if (positionalParams.isNotEmpty) aux.add('[$positionalParams]');
@@ -90,12 +90,12 @@ String _renderSetterValue(PropertyAccessorElement setter) {
   var setterType = setter.parameters[0].type;
   var setterTypeElement = setterType.element;
   if (setterTypeElement is ClassElement && setterTypeElement.isEnum) {
-    return 'fromSerializedEnum(__value, ${setterType.name}, () => ${setterType.name}.values)';
+    return 'fromSerializedEnum(__value, ${setterType.getDisplayString(withNullability: false)}, () => ${setterType.getDisplayString(withNullability: false)}.values)';
   }
 
   if (_isPrimitiveOrGeneric(setterType)) {
     return '__value';
-  } else if (setterType.name == 'DateTime') {
+  } else if (setterType.getDisplayString(withNullability: false) == 'DateTime') {
     return 'fromSerializedDateTime(__value)';
   } else {
     return 'fromSerialized(__value, ${_renderSetterFactory(setterType)})';
@@ -103,7 +103,8 @@ String _renderSetterValue(PropertyAccessorElement setter) {
 }
 
 bool _isPrimitive(DartType type) =>
-    ['bool', 'int', 'num', 'double', 'String', 'BigInt', 'dynamic', 'Object'].any((e) => e == type.name);
+    ['bool', 'int', 'num', 'double', 'String', 'BigInt', 'dynamic', 'Object']
+        .any((e) => e == type.getDisplayString(withNullability: false));
 
 bool _isPrimitiveOrGeneric(DartType type) => _isPrimitive(type) || type is TypeParameterType;
 
@@ -111,14 +112,14 @@ String _renderSetterFactory(DartType setterType) {
   if (setterType is ParameterizedType) {
     if (_isPrimitiveOrGeneric(setterType)) {
       return 'null';
-    } else if (setterType.name == 'DateTime') {
+    } else if (setterType.getDisplayString(withNullability: false) == 'DateTime') {
       return '() => fromSerializedDateTime(__value)';
     } else if (setterType.typeArguments.isEmpty) {
-      return '() => ${setterType.name}(${_renderConstructorParameters(setterType)})';
+      return '() => ${setterType.getDisplayString(withNullability: false)}(${_renderConstructorParameters(setterType)})';
     } else if (setterType.typeArguments.every(_isPrimitiveOrGeneric)) {
-      return '() => ${setterType.name}<${setterType.typeArguments.join(',')}>()';
+      return '() => ${setterType.getDisplayString(withNullability: false)}()';
     } else {
-      return '[() => ${setterType.name}<${setterType.typeArguments.join(',')}>(),'
+      return '[() => ${setterType.getDisplayString(withNullability: false)}(),'
           ' ${setterType.typeArguments.map(_renderSetterFactory).join(',')}]';
     }
   } else {
@@ -146,7 +147,7 @@ String _getSerializedNameFromField(FieldElement f) {
   return f.metadata
           .firstWhere((a) => (a.computeConstantValue().type.element as ClassElement).name == 'SerializedName',
               orElse: () => null)
-          ?.constantValue
+          ?.computeConstantValue()
           ?.getField('name')
           ?.toStringValue() ??
       f.displayName;
