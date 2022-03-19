@@ -1,0 +1,61 @@
+= serializable
+
+[![Build Status](https://travis-ci.org/dart-league/serializable.svg?branch=master)](https://travis-ci.org/dart-league/serializable)
+
+This is a library that generates a serializable class from classes annotated with
+`@serializable` or `@Serializable()`.
+
+== Getting Started
+
+1 - Create a new dart project.
+2 - add `serializable` dependency to your dependencies and `build_runner` to your dev_dependencies in the file `pubspec.yaml` .
+
+[source,yaml]
+----
+...
+dependencies:
+  ...
+  serializable: any   # change by the latest dependency
+  ...
+dev_dependencies:
+  ...
+  build_runner: any   # change by the latest dependency
+  ...
+----
+
+3 - create a file in `bin` folder called `models.dart` and put next code on it:
+
+
+[source, dart]
+----
+include::example/bin/models.dart[]
+----
+
+4 - create a file in `bin` folder called `main.dart` and put next code on it:
+
+[source, dart]
+----
+include::example/bin/main.dart[]
+----
+
+5 - run `pub run build_runner build`. Then you will see that the file `bin/models.g.dart`
+has been generated and it will contains the next code:
+
+[source, dart]
+----
+include::example/bin/models.g.dart[]
+----
+
+6 - Finally you can run the file `bin/main.dart`. If everything is ok you will see next
+output in console:
+
+[source]
+----
+p1['id']: 1
+p1['name']: person 1
+FieldNotFoundException: The key "no_existing" doesn't exist on class "Person"
+p1.ToMap(): {id: 1, name: person 1}
+p2: {id: 2, name: person 2}
+p1: {"id":1,"name":"person 1"}
+p3: {id: 3, name: person 3}
+----

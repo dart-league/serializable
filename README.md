@@ -1,16 +1,16 @@
-# serializable
+\[\!\[Build
+Status\](<https://travis-ci.org/dart-league/serializable.svg?branch=master>)\](<https://travis-ci.org/dart-league/serializable>)
 
-[![Build Status](https://travis-ci.org/dart-league/serializable.svg?branch=master)](https://travis-ci.org/dart-league/serializable)
+This is a library that generates a serializable class from classes
+annotated with `@serializable` or `@Serializable()`.
 
-This is a library that generates a serializable class from classes annotated with
-`@serializable` or `@Serializable()`.
+# Getting Started
 
-## Getting Started
+1- Create a new dart project. 2- add `serializable` dependency to your
+dependencies and `build_runner` to your dev\_dependencies in the file
+`pubspec.yaml` .
 
-1\. Create a new dart project.
-2\. add `serializable` dependency to your dependencies and `build_runner` to your dev_dependencies in the file `pubspec.yaml` .
-
-```yaml
+``` yaml
 ...
 dependencies:
   ...
@@ -22,10 +22,11 @@ dev_dependencies:
   ...
 ```
 
-3\. create a file in `bin` folder called `models.dart` and put next code on it:
+3- create a file in `bin` folder called `models.dart` and put next code
+on it:
 
-```dart
-library example.person;
+``` dart
+library example.models;
 
 import 'package:serializable/serializable.dart';
 
@@ -51,9 +52,9 @@ class Person extends _$PersonSerializable {
   List<Address> otherAddresses;
 
   static final Map<String, SimpleType> list = {
-    'minutes': new SimpleType('58c42d14f17f33ec6e2020ad', 'minutes'),
-    'hours': new SimpleType('58c42d26f17f33ec6e2020ae', 'hours'),
-    'percent': new SimpleType('58c42d4bf17f33ec6e2020b3', 'percent')
+    'minutes': SimpleType('58c42d14f17f33ec6e2020ad', 'minutes'),
+    'hours': SimpleType('58c42d26f17f33ec6e2020ae', 'hours'),
+    'percent': SimpleType('58c42d4bf17f33ec6e2020b3', 'percent')
   };
 }
 
@@ -72,18 +73,18 @@ class ClassWithMethod extends _$ClassWithMethodSerializable {
     print('Hello $name!');
   }
 }
-
 ```
 
-4\. create a file in `bin` folder called `main.dart` and put next code on it:
+4- create a file in `bin` folder called `main.dart` and put next code on
+it:
 
-```dart
+``` dart
 import 'dart:convert';
 
 import 'models.dart';
 
 main() {
-  var p1 = new Person()
+  var p1 = Person()
     ..id = 1
     ..name = 'person 1';
 
@@ -103,17 +104,17 @@ main() {
   // you can also use it to convert the object to/from Map
 
   print('p1.ToMap(): ${p1.toMap()}'); // prints `{id: 1, name: person 1}`
-  var p2 = new Person()
-    ..fromMap({"id": 2, "name": "person 2", 'address': new Address()..fromMap({'id': 1})});
+  var p2 = Person()
+    ..fromMap({"id": 2, "name": "person 2", 'address': Address()..fromMap({'id': 1})});
   print('p2: {id: ${p2.id}, name: ${p2.name}, address.id: ${p2.address
       .id}}'); // prints `p2: {id: 2, name: person 2, address.id: 1}`
 
-  var p3 = new Person()
+  var p3 = Person()
     ..fromMap({
       "id": 3,
       "name": "person 3",
-      'address': new Address()..fromMap({'id': 3}),
-      'otherAddresses': [{'id': 4, 'street': 'street 4'}].map((e) => new Address()..fromMap(e)).toList()
+      'address': Address()..fromMap({'id': 3}),
+      'otherAddresses': [{'id': 4, 'street': 'street 4'}].map((e) => Address()..fromMap(e)).toList()
     });
   print('p3: {id: ${p3.id}, name: ${p3.name}, address.id: ${p3.address.id}, otherAddresses[0].street:'
       ' ${p3.otherAddresses[0].street}}'); // prints `p3: {id: 3, name: person 3, address.id: 3}`
@@ -124,23 +125,23 @@ main() {
   print('p1: ${jsonEncode(p1)}'); // prints `p1: {"id":1,"name":"person 1"}`
 
   var p4Map = jsonDecode('{"id": 3, "name": "person 3"}');
-  var p4 = new Person()
+  var p4 = Person()
     ..fromMap(p4Map);
 
   print('p4: {id: ${p4.id}, name: ${p4.name}}'); // prints `p4: {id: 4, name: person 4}`
 
-  new ClassWithMethod()['sayHello']('world'); // prints `Hello world!`
+  ClassWithMethod()['sayHello']('world'); // prints `Hello world!`
 }
-
 ```
 
-5\. run `pub run build_runner build`. Then you will see that the file `bin/models.g.dart`
-has been generated and it will contains the next code:
+5- run `pub run build_runner build`. Then you will see that the file
+`bin/models.g.dart` has been generated and it will contains the next
+code:
 
-```dart
+``` dart
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of example.person;
+part of example.models;
 
 // **************************************************************************
 // SerializableGenerator
@@ -154,13 +155,13 @@ abstract class _$PersonSerializable extends SerializableMap {
   Map<String, int> get otherMap;
   Address get address;
   List<Address> get otherAddresses;
-  void set id(int v);
-  void set name(String v);
-  void set someDynamic(dynamic v);
-  void set someMap(Map<dynamic, dynamic> v);
-  void set otherMap(Map<String, int> v);
-  void set address(Address v);
-  void set otherAddresses(List<Address> v);
+  set id(int v);
+  set name(String v);
+  set someDynamic(dynamic v);
+  set someMap(Map<dynamic, dynamic> v);
+  set otherMap(Map<String, int> v);
+  set address(Address v);
+  set otherAddresses(List<Address> v);
 
   operator [](Object __key) {
     switch (__key) {
@@ -194,16 +195,17 @@ abstract class _$PersonSerializable extends SerializableMap {
         someDynamic = __value;
         return;
       case 'someMap':
-        someMap = __value;
+        someMap = fromSerialized(__value, () => Map<dynamic, dynamic>());
         return;
       case 'otherMap':
-        otherMap = __value;
+        otherMap = fromSerialized(__value, () => Map<String, int>());
         return;
       case 'address':
-        address = __value;
+        address = fromSerialized(__value, () => Address());
         return;
       case 'otherAddresses':
-        otherAddresses = __value;
+        otherAddresses =
+            fromSerialized(__value, [() => List<Address>(), () => Address()]);
         return;
     }
     throwFieldNotFoundException(__key, 'Person');
@@ -226,11 +228,11 @@ abstract class _$AddressSerializable extends SerializableMap {
   String get zip;
   String get city;
   String get state;
-  void set id(int v);
-  void set street(String v);
-  void set zip(String v);
-  void set city(String v);
-  void set state(String v);
+  set id(int v);
+  set street(String v);
+  set zip(String v);
+  set city(String v);
+  set state(String v);
 
   operator [](Object __key) {
     switch (__key) {
@@ -291,18 +293,15 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
 
   Iterable<String> get keys => const [];
 }
-
 ```
 
-6\. Finally you can run the file `bin/main.dart`. If everything is ok you will see next
-output in console:
+6- Finally you can run the file `bin/main.dart`. If everything is ok you
+will see next output in console:
 
-```
-p1['id']: 1
-p1['name']: person 1
-FieldNotFoundException: The key "no_existing" doesn't exist on class "Person"
-p1.ToMap(): {id: 1, name: person 1}
-p2: {id: 2, name: person 2}
-p1: {"id":1,"name":"person 1"}
-p3: {id: 3, name: person 3}
-```
+    p1['id']: 1
+    p1['name']: person 1
+    FieldNotFoundException: The key "no_existing" doesn't exist on class "Person"
+    p1.ToMap(): {id: 1, name: person 1}
+    p2: {id: 2, name: person 2}
+    p1: {"id":1,"name":"person 1"}
+    p3: {id: 3, name: person 3}

@@ -29,11 +29,10 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     var className = element.name;
     var fields = _distinctByName<FieldElement>(element.fields.where((f) => !f.isStatic).toList()..addAll(stFields));
 
-    var accessors = _distinctByName<PropertyAccessorElement>(element.accessors.toList()..addAll(stAccessors));
+    var accessors = _distinctByName<PropertyAccessorElement>([...element.accessors, ...stAccessors]);
     var getters = _distinctByName<PropertyAccessorElement>(accessors.where(accessorCheck(ElementKind.GETTER)));
     var setters = _distinctByName<PropertyAccessorElement>(accessors.where(accessorCheck(ElementKind.SETTER)));
-    var methods = _distinctByName<MethodElement>(
-        element.methods.where(methodCheck).toList()..addAll(stMethods.where(methodCheck)));
+    var methods = _distinctByName<MethodElement>([...element.methods.where(methodCheck), ...stMethods.where(methodCheck)]);
     var typeGenerics = _distinctByName<TypeParameterElement>(element.typeParameters);
 
     return '''abstract class _\$${className}Serializable${typeGenerics.isNotEmpty ? '<' + typeGenerics.map((x) => x.declaration.name).join(',') + '>' : ''} extends SerializableMap {
