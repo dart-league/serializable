@@ -13,15 +13,15 @@ class SimpleType {
 
 @serializable
 class Person extends _$PersonSerializable {
-  int id;
-  String name;
+  int? id;
+  String? name;
   var someDynamic;
-  Map someMap;
-  Map<String, int> otherMap;
+  Map? someMap;
+  Map<String, int>? otherMap;
 
-  Address address;
+  Address? address;
 
-  List<Address> otherAddresses;
+  List<Address>? otherAddresses;
 
   static final Map<String, SimpleType> list = {
     'minutes': SimpleType('58c42d14f17f33ec6e2020ad', 'minutes'),
@@ -32,11 +32,11 @@ class Person extends _$PersonSerializable {
 
 @serializable
 class Address extends _$AddressSerializable {
-  int id;
-  String street;
-  String zip;
-  String city;
-  String state;
+  int? id;
+  String? street;
+  String? zip;
+  String? city;
+  String? state;
 }
 
 @serializable

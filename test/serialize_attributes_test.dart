@@ -8,11 +8,11 @@ part 'serialize_attributes_test.g.dart';
 
 @serializable
 class Person extends _$PersonSerializable {
-  int id;
-  String name;
+  int? id;
+  String? name;
   var someDynamic;
-  Map someMap;
-  Map<String, int> otherMap;
+  Map? someMap;
+  Map<String, int>? otherMap;
 }
 
 
@@ -23,9 +23,9 @@ class ClassWithMethod extends _$ClassWithMethodSerializable {
 
 @serializable
 class ClassWithOperator extends _$ClassWithOperatorSerializable {
-  int val;
+  int val = 0;
 
-  int operator +(_val) => val + _val;
+  num operator +(_val) => val + _val;
 }
 
 @serializable

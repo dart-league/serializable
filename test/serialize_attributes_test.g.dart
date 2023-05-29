@@ -1,24 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of serialize_attributes_test;
+part of 'serialize_attributes_test.dart';
 
 // **************************************************************************
 // SerializableGenerator
 // **************************************************************************
 
 abstract class _$PersonSerializable extends SerializableMap {
-  int get id;
-  String get name;
+  int? get id;
+  String? get name;
   dynamic get someDynamic;
-  Map<dynamic, dynamic> get someMap;
-  Map<String, int> get otherMap;
-  set id(int v);
-  set name(String v);
+  Map<dynamic, dynamic>? get someMap;
+  Map<String, int>? get otherMap;
+  set id(int? v);
+  set name(String? v);
   set someDynamic(dynamic v);
-  set someMap(Map<dynamic, dynamic> v);
-  set otherMap(Map<String, int> v);
+  set someMap(Map<dynamic, dynamic>? v);
+  set otherMap(Map<String, int>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'id':
         return id;
@@ -34,7 +34,7 @@ abstract class _$PersonSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'Person');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'id':
         id = __value;
@@ -62,7 +62,7 @@ abstract class _$PersonSerializable extends SerializableMap {
 abstract class _$ClassWithMethodSerializable extends SerializableMap {
   int sum5(int val);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'sum5':
         return sum5;
@@ -70,9 +70,8 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ClassWithMethod');
   }
 
-  operator []=(Object __key, __value) {
-    switch (__key) {
-    }
+  operator []=(Object? __key, __value) {
+    switch (__key) {}
     throwFieldNotFoundException(__key, 'ClassWithMethod');
   }
 
@@ -83,7 +82,7 @@ abstract class _$ClassWithOperatorSerializable extends SerializableMap {
   int get val;
   set val(int v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'val':
         return val;
@@ -91,7 +90,7 @@ abstract class _$ClassWithOperatorSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ClassWithOperator');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'val':
         val = __value;
@@ -104,15 +103,13 @@ abstract class _$ClassWithOperatorSerializable extends SerializableMap {
 }
 
 abstract class _$ClassWithStaticsSerializable extends SerializableMap {
-  operator [](Object __key) {
-    switch (__key) {
-    }
+  operator [](Object? __key) {
+    switch (__key) {}
     throwFieldNotFoundException(__key, 'ClassWithStatics');
   }
 
-  operator []=(Object __key, __value) {
-    switch (__key) {
-    }
+  operator []=(Object? __key, __value) {
+    switch (__key) {}
     throwFieldNotFoundException(__key, 'ClassWithStatics');
   }
 

@@ -15,7 +15,7 @@ enum Color {
 
 @serializable
 class ObjectWithEnum extends _$ObjectWithEnumSerializable {
-  Color color;
+  Color? color;
 }
 
 main() {

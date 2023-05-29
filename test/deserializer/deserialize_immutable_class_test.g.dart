@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of deserialiazer.deserialize_immutable_class_test;
+part of 'deserialize_immutable_class_test.dart';
 
 // **************************************************************************
 // SerializableGenerator
@@ -10,7 +10,7 @@ abstract class _$ImmutableClassSerializable extends SerializableMap {
   String get name;
   String get renamed;
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'name':
         return name;
@@ -20,9 +20,8 @@ abstract class _$ImmutableClassSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ImmutableClass');
   }
 
-  operator []=(Object __key, __value) {
-    switch (__key) {
-    }
+  operator []=(Object? __key, __value) {
+    switch (__key) {}
     throwFieldNotFoundException(__key, 'ImmutableClass');
   }
 
@@ -31,10 +30,10 @@ abstract class _$ImmutableClassSerializable extends SerializableMap {
 
 abstract class _$ImmutableWithOptionalParametersSerializable
     extends SerializableMap {
-  int get id;
-  String get name;
+  int? get id;
+  String? get name;
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'id':
         return id;
@@ -44,9 +43,8 @@ abstract class _$ImmutableWithOptionalParametersSerializable
     throwFieldNotFoundException(__key, 'ImmutableWithOptionalParameters');
   }
 
-  operator []=(Object __key, __value) {
-    switch (__key) {
-    }
+  operator []=(Object? __key, __value) {
+    switch (__key) {}
     throwFieldNotFoundException(__key, 'ImmutableWithOptionalParameters');
   }
 
@@ -56,9 +54,9 @@ abstract class _$ImmutableWithOptionalParametersSerializable
 abstract class _$ImmutableClassInvalidParameterSerializable
     extends SerializableMap {
   const _$ImmutableClassInvalidParameterSerializable();
-  String get name;
+  String? get name;
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'name':
         return name;
@@ -66,9 +64,8 @@ abstract class _$ImmutableClassInvalidParameterSerializable
     throwFieldNotFoundException(__key, 'ImmutableClassInvalidParameter');
   }
 
-  operator []=(Object __key, __value) {
-    switch (__key) {
-    }
+  operator []=(Object? __key, __value) {
+    switch (__key) {}
     throwFieldNotFoundException(__key, 'ImmutableClassInvalidParameter');
   }
 
@@ -76,12 +73,12 @@ abstract class _$ImmutableClassInvalidParameterSerializable
 }
 
 abstract class _$ListWithImmutableClassSerializable extends SerializableMap {
-  ImmutableClass get immutable;
-  List<ImmutableClass> get immutables;
-  set immutable(ImmutableClass v);
-  set immutables(List<ImmutableClass> v);
+  ImmutableClass? get immutable;
+  List<ImmutableClass>? get immutables;
+  set immutable(ImmutableClass? v);
+  set immutables(List<ImmutableClass>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'immutable':
         return immutable;
@@ -91,7 +88,7 @@ abstract class _$ListWithImmutableClassSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ListWithImmutableClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'immutable':
         immutable = fromSerialized(__value,
@@ -99,7 +96,7 @@ abstract class _$ListWithImmutableClassSerializable extends SerializableMap {
         return;
       case 'immutables':
         immutables = fromSerialized(__value, [
-          () => List<ImmutableClass>(),
+          () => List<ImmutableClass>.empty(growable: true),
           () => ImmutableClass(__value['name'], __value['the_renamed'])
         ]);
         return;

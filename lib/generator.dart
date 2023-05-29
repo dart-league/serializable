@@ -4,6 +4,7 @@ import 'package:analyzer/dart/element/element.dart';
 import 'package:analyzer/dart/element/type.dart';
 import 'package:build/build.dart';
 import 'package:source_gen/source_gen.dart';
+import 'package:collection/collection.dart';
 
 import 'serializable.dart';
 
@@ -16,7 +17,6 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
   @override
   Future<String> generateForAnnotatedElement(
       covariant ClassElement element, ConstantReader cr, BuildStep buildStep) async {
-    if (element is! ClassElement) return '';
 
     var superTypes = element.allSupertypes.where((st) => st.element.name != 'Object');
     var stAccessors = superTypes.expand((st) => st.accessors);
@@ -27,7 +27,9 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     var accessorCheck = (ElementKind type) => (a) => a.kind == type && !a.isStatic && !a.isOperator && a.name != 'keys';
 
     var className = element.name;
-    var fields = _distinctByName<FieldElement>(element.fields.where((f) => !f.isStatic).toList()..addAll(stFields));
+    var fields = []
+      ..addAll(_distinctByName<FieldElement>(element.fields.where((f) => !f.isStatic))
+      ..addAll(stFields));
 
     var accessors = _distinctByName<PropertyAccessorElement>([...element.accessors, ...stAccessors]);
     var getters = _distinctByName<PropertyAccessorElement>(accessors.where(accessorCheck(ElementKind.GETTER)));
@@ -37,11 +39,11 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
 
     return '''abstract class _\$${className}Serializable${typeGenerics.isNotEmpty ? '<' + typeGenerics.map((x) => x.declaration.name).join(',') + '>' : ''} extends SerializableMap {
   ${element.constructors.where((c) => c.isConst).map((c) => 'const _\$${className}Serializable${c.name.isNotEmpty ? '.' + c.name : ''}();').join('\n')}
-  ${getters.map((g) => '${g.returnType.getDisplayString(withNullability: false)} get ${g.name};').join('\n')}
-  ${setters.map((s) => 'set ${s.displayName}(${s.type.normalParameterTypes[0].getDisplayString(withNullability: false)} v);').join('\n')}
-  ${methods.map((m) => '${m.returnType.getDisplayString(withNullability: false)} ${m.name}(${_renderParameters(m.parameters)});').join('\n')}
+  ${getters.map((g) => '${g.returnType.getDisplayString(withNullability: true)} get ${g.name};').join('\n')}
+  ${setters.map((s) => 'set ${s.displayName}(${s.type.normalParameterTypes[0].getDisplayString(withNullability: true)} v);').join('\n')}
+  ${methods.map((m) => '${m.returnType.getDisplayString(withNullability: true)} ${m.name}(${_renderParameters(m.parameters)});').join('\n')}
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch(__key) {
       ${getters.map((a) => "case '${_getFieldName(a)}': return ${a.name};").join('\n')}
       ${methods.map((a) => "case '${a.name}': return ${a.name};").join('\n')}
@@ -49,7 +51,7 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     throwFieldNotFoundException(__key, '$className');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch(__key) {
       ${setters.map((a) => "case '${_getFieldName(a)}': ${a.displayName} = ${_renderSetterValue(a)}; return;").join('\n')}
     }
@@ -76,7 +78,7 @@ List<T> _distinctByName<T extends Element>(Iterable<T> elements) {
 
 String _renderParameters(List<ParameterElement> parameters) {
   var aux = [];
-  var requiredParams = parameters.where((p) => p.isNotOptional).map((p) => p.getDisplayString(withNullability: false)).join(',');
+  var requiredParams = parameters.where((p) => p.isRequired).map((p) => p.getDisplayString(withNullability: false)).join(',');
   if (requiredParams.isNotEmpty) aux.add(requiredParams);
   var positionalParams = parameters.where((p) => p.isOptionalPositional).map((p) => p.toString()).join(',');
   if (positionalParams.isNotEmpty) aux.add('[$positionalParams]');
@@ -88,7 +90,7 @@ String _renderParameters(List<ParameterElement> parameters) {
 String _renderSetterValue(PropertyAccessorElement setter) {
   var setterType = setter.parameters[0].type;
   var setterTypeElement = setterType.element;
-  if (setterTypeElement is ClassElement && setterTypeElement.isEnum) {
+  if (setterTypeElement is EnumElement) {
     return 'fromSerializedEnum(__value, ${setterType.getDisplayString(withNullability: false)}, () => ${setterType.getDisplayString(withNullability: false)}.values)';
   }
 
@@ -109,16 +111,17 @@ bool _isPrimitiveOrGeneric(DartType type) => _isPrimitive(type) || type is TypeP
 
 String _renderSetterFactory(DartType setterType) {
   if (setterType is ParameterizedType) {
+    var setterDisplayString = setterType.getDisplayString(withNullability: false);
     if (_isPrimitiveOrGeneric(setterType)) {
       return 'null';
-    } else if (setterType.getDisplayString(withNullability: false) == 'DateTime') {
+    } else if (setterDisplayString == 'DateTime') {
       return '() => fromSerializedDateTime(__value)';
     } else if (setterType.typeArguments.isEmpty) {
-      return '() => ${setterType.getDisplayString(withNullability: false)}(${_renderConstructorParameters(setterType)})';
+      return '() => ${setterDisplayString}(${_renderConstructorParameters(setterType)})';
     } else if (setterType.typeArguments.every(_isPrimitiveOrGeneric)) {
-      return '() => ${setterType.getDisplayString(withNullability: false)}()';
+      return '() => ${setterDisplayString.startsWith('List') ? '${setterDisplayString}.empty(growable: true)' : '${setterDisplayString}()'}';
     } else {
-      return '[() => ${setterType.getDisplayString(withNullability: false)}(),'
+      return '[() => ${setterDisplayString.startsWith('List') ? '${setterDisplayString}.empty(growable: true)' : '${setterDisplayString}()'},'
           ' ${setterType.typeArguments.map(_renderSetterFactory).join(',')}]';
     }
   } else {
@@ -126,14 +129,15 @@ String _renderSetterFactory(DartType setterType) {
   }
 }
 
-String _renderConstructorParameters(DartType setterType) {
-  ClassElement setterClass = setterType.element;
-  var constructor = setterClass.unnamedConstructor;
-  if (constructor.parameters.isNotEmpty) {
+String? _renderConstructorParameters(DartType setterType) {
+  var setterClass = setterType.element as ClassElement?;
+  var constructor = setterClass?.unnamedConstructor;
+  var parameters = constructor?.parameters;
+  if (parameters?.isNotEmpty == true) {
     print('constructor: $constructor');
-    if (constructor.parameters.every((p) => setterClass.getField(p.name)?.isFinal ?? false)) {
-      return constructor.parameters.map((p) {
-        var pf = setterClass.getField(p.name);
+    if (parameters?.every((p) => setterClass?.getField(p.name)?.isFinal ?? false) == true) {
+      return parameters?.map((p) {
+        var pf = setterClass?.getField(p.name);
         return '__value[\'${_getSerializedNameFromField(pf)}\']';
       }).join(',');
     }
@@ -142,12 +146,11 @@ String _renderConstructorParameters(DartType setterType) {
   return '';
 }
 
-String _getSerializedNameFromField(FieldElement f) {
-  return f.metadata
-          .firstWhere((a) => (a.computeConstantValue().type.element as ClassElement).name == 'SerializedName',
-              orElse: () => null)
+String? _getSerializedNameFromField(FieldElement? f) {
+  return f?.metadata
+          .firstWhereOrNull((a) => (a.computeConstantValue()?.type?.element as ClassElement?)?.name == 'SerializedName')
           ?.computeConstantValue()
           ?.getField('name')
           ?.toStringValue() ??
-      f.displayName;
+      f?.displayName;
 }

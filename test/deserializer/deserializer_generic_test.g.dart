@@ -1,17 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of deserialiazer.deserialize_generic_test;
+part of 'deserializer_generic_test.dart';
 
 // **************************************************************************
 // SerializableGenerator
 // **************************************************************************
 
 abstract class _$SimpleClassSerializable extends SerializableMap {
-  String get name;
-  set name(String v);
+  String? get name;
+  set name(String? v);
   String toString();
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'name':
         return name;
@@ -21,7 +21,7 @@ abstract class _$SimpleClassSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'SimpleClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'name':
         name = __value;
@@ -34,10 +34,10 @@ abstract class _$SimpleClassSerializable extends SerializableMap {
 }
 
 abstract class _$ListStringSerializable extends SerializableMap {
-  List<String> get list;
-  set list(List<String> v);
+  List<String>? get list;
+  set list(List<String>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'list':
         return list;
@@ -45,10 +45,11 @@ abstract class _$ListStringSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ListString');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'list':
-        list = fromSerialized(__value, () => List<String>());
+        list =
+            fromSerialized(__value, () => List<String>.empty(growable: true));
         return;
     }
     throwFieldNotFoundException(__key, 'ListString');
@@ -58,10 +59,10 @@ abstract class _$ListStringSerializable extends SerializableMap {
 }
 
 abstract class _$ListClassSerializable extends SerializableMap {
-  List<SimpleClass> get list;
-  set list(List<SimpleClass> v);
+  List<SimpleClass>? get list;
+  set list(List<SimpleClass>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'list':
         return list;
@@ -69,11 +70,13 @@ abstract class _$ListClassSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ListClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'list':
-        list = fromSerialized(
-            __value, [() => List<SimpleClass>(), () => SimpleClass()]);
+        list = fromSerialized(__value, [
+          () => List<SimpleClass>.empty(growable: true),
+          () => SimpleClass()
+        ]);
         return;
     }
     throwFieldNotFoundException(__key, 'ListClass');
@@ -83,10 +86,10 @@ abstract class _$ListClassSerializable extends SerializableMap {
 }
 
 abstract class _$ListTClassSerializable<T> extends SerializableMap {
-  List<T> get listT;
-  set listT(List<T> v);
+  List<T>? get listT;
+  set listT(List<T>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'listT':
         return listT;
@@ -94,10 +97,10 @@ abstract class _$ListTClassSerializable<T> extends SerializableMap {
     throwFieldNotFoundException(__key, 'ListTClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'listT':
-        listT = fromSerialized(__value, () => List<T>());
+        listT = fromSerialized(__value, () => List<T>.empty(growable: true));
         return;
     }
     throwFieldNotFoundException(__key, 'ListTClass');
@@ -107,10 +110,10 @@ abstract class _$ListTClassSerializable<T> extends SerializableMap {
 }
 
 abstract class _$ListListClassSerializable extends SerializableMap {
-  List<List<SimpleClass>> get list;
-  set list(List<List<SimpleClass>> v);
+  List<List<SimpleClass>>? get list;
+  set list(List<List<SimpleClass>>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'list':
         return list;
@@ -118,12 +121,12 @@ abstract class _$ListListClassSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ListListClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'list':
         list = fromSerialized(__value, [
-          () => List<List<SimpleClass>>(),
-          [() => List<SimpleClass>(), () => SimpleClass()]
+          () => List<List<SimpleClass>>.empty(growable: true),
+          [() => List<SimpleClass>.empty(growable: true), () => SimpleClass()]
         ]);
         return;
     }
@@ -134,10 +137,10 @@ abstract class _$ListListClassSerializable extends SerializableMap {
 }
 
 abstract class _$ListListListClassSerializable extends SerializableMap {
-  List<List<List<SimpleClass>>> get list;
-  set list(List<List<List<SimpleClass>>> v);
+  List<List<List<SimpleClass>>>? get list;
+  set list(List<List<List<SimpleClass>>>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'list':
         return list;
@@ -145,14 +148,14 @@ abstract class _$ListListListClassSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ListListListClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'list':
         list = fromSerialized(__value, [
-          () => List<List<List<SimpleClass>>>(),
+          () => List<List<List<SimpleClass>>>.empty(growable: true),
           [
-            () => List<List<SimpleClass>>(),
-            [() => List<SimpleClass>(), () => SimpleClass()]
+            () => List<List<SimpleClass>>.empty(growable: true),
+            [() => List<SimpleClass>.empty(growable: true), () => SimpleClass()]
           ]
         ]);
         return;
@@ -164,10 +167,10 @@ abstract class _$ListListListClassSerializable extends SerializableMap {
 }
 
 abstract class _$ListMapClassSerializable extends SerializableMap {
-  List<Map<String, SimpleClass>> get list;
-  set list(List<Map<String, SimpleClass>> v);
+  List<Map<String, SimpleClass>>? get list;
+  set list(List<Map<String, SimpleClass>>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'list':
         return list;
@@ -175,11 +178,11 @@ abstract class _$ListMapClassSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ListMapClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'list':
         list = fromSerialized(__value, [
-          () => List<Map<String, SimpleClass>>(),
+          () => List<Map<String, SimpleClass>>.empty(growable: true),
           [() => Map<String, SimpleClass>(), null, () => SimpleClass()]
         ]);
         return;
@@ -191,10 +194,10 @@ abstract class _$ListMapClassSerializable extends SerializableMap {
 }
 
 abstract class _$ListListMapClassSerializable extends SerializableMap {
-  List<List<Map<String, SimpleClass>>> get list;
-  set list(List<List<Map<String, SimpleClass>>> v);
+  List<List<Map<String, SimpleClass>>>? get list;
+  set list(List<List<Map<String, SimpleClass>>>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'list':
         return list;
@@ -202,13 +205,13 @@ abstract class _$ListListMapClassSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ListListMapClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'list':
         list = fromSerialized(__value, [
-          () => List<List<Map<String, SimpleClass>>>(),
+          () => List<List<Map<String, SimpleClass>>>.empty(growable: true),
           [
-            () => List<Map<String, SimpleClass>>(),
+            () => List<Map<String, SimpleClass>>.empty(growable: true),
             [() => Map<String, SimpleClass>(), null, () => SimpleClass()]
           ]
         ]);
@@ -221,10 +224,10 @@ abstract class _$ListListMapClassSerializable extends SerializableMap {
 }
 
 abstract class _$MapStringStringClassSerializable extends SerializableMap {
-  Map<String, String> get myMap;
-  set myMap(Map<String, String> v);
+  Map<String, String>? get myMap;
+  set myMap(Map<String, String>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'myMap':
         return myMap;
@@ -232,7 +235,7 @@ abstract class _$MapStringStringClassSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'MapStringStringClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'myMap':
         myMap = fromSerialized(__value, () => Map<String, String>());
@@ -245,10 +248,10 @@ abstract class _$MapStringStringClassSerializable extends SerializableMap {
 }
 
 abstract class _$MapClassSerializable extends SerializableMap {
-  Map<String, SimpleClass> get myMap;
-  set myMap(Map<String, SimpleClass> v);
+  Map<String, SimpleClass>? get myMap;
+  set myMap(Map<String, SimpleClass>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'myMap':
         return myMap;
@@ -256,7 +259,7 @@ abstract class _$MapClassSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'MapClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'myMap':
         myMap = fromSerialized(__value,

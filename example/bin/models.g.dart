@@ -1,28 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of example.models;
+part of 'models.dart';
 
 // **************************************************************************
 // SerializableGenerator
 // **************************************************************************
 
 abstract class _$PersonSerializable extends SerializableMap {
-  int get id;
-  String get name;
+  int? get id;
+  String? get name;
   dynamic get someDynamic;
-  Map<dynamic, dynamic> get someMap;
-  Map<String, int> get otherMap;
-  Address get address;
-  List<Address> get otherAddresses;
-  set id(int v);
-  set name(String v);
+  Map<dynamic, dynamic>? get someMap;
+  Map<String, int>? get otherMap;
+  Address? get address;
+  List<Address>? get otherAddresses;
+  set id(int? v);
+  set name(String? v);
   set someDynamic(dynamic v);
-  set someMap(Map<dynamic, dynamic> v);
-  set otherMap(Map<String, int> v);
-  set address(Address v);
-  set otherAddresses(List<Address> v);
+  set someMap(Map<dynamic, dynamic>? v);
+  set otherMap(Map<String, int>? v);
+  set address(Address? v);
+  set otherAddresses(List<Address>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'id':
         return id;
@@ -42,7 +42,7 @@ abstract class _$PersonSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'Person');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'id':
         id = __value;
@@ -63,8 +63,8 @@ abstract class _$PersonSerializable extends SerializableMap {
         address = fromSerialized(__value, () => Address());
         return;
       case 'otherAddresses':
-        otherAddresses =
-            fromSerialized(__value, [() => List<Address>(), () => Address()]);
+        otherAddresses = fromSerialized(__value,
+            [() => List<Address>.empty(growable: true), () => Address()]);
         return;
     }
     throwFieldNotFoundException(__key, 'Person');
@@ -82,18 +82,18 @@ abstract class _$PersonSerializable extends SerializableMap {
 }
 
 abstract class _$AddressSerializable extends SerializableMap {
-  int get id;
-  String get street;
-  String get zip;
-  String get city;
-  String get state;
-  set id(int v);
-  set street(String v);
-  set zip(String v);
-  set city(String v);
-  set state(String v);
+  int? get id;
+  String? get street;
+  String? get zip;
+  String? get city;
+  String? get state;
+  set id(int? v);
+  set street(String? v);
+  set zip(String? v);
+  set city(String? v);
+  set state(String? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'id':
         return id;
@@ -109,7 +109,7 @@ abstract class _$AddressSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'Address');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'id':
         id = __value;
@@ -136,7 +136,7 @@ abstract class _$AddressSerializable extends SerializableMap {
 abstract class _$ClassWithMethodSerializable extends SerializableMap {
   void sayHello(String name);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'sayHello':
         return sayHello;
@@ -144,9 +144,8 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ClassWithMethod');
   }
 
-  operator []=(Object __key, __value) {
-    switch (__key) {
-    }
+  operator []=(Object? __key, __value) {
+    switch (__key) {}
     throwFieldNotFoundException(__key, 'ClassWithMethod');
   }
 

@@ -1,16 +1,16 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of deserialiazer.deserialize_enums_test;
+part of 'deserialize_enums_test.dart';
 
 // **************************************************************************
 // SerializableGenerator
 // **************************************************************************
 
 abstract class _$ObjectWithEnumSerializable extends SerializableMap {
-  Color get color;
-  set color(Color v);
+  Color? get color;
+  set color(Color? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'color':
         return color;
@@ -18,7 +18,7 @@ abstract class _$ObjectWithEnumSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ObjectWithEnum');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'color':
         color = fromSerializedEnum(__value, Color, () => Color.values);

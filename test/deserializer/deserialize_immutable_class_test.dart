@@ -18,23 +18,23 @@ class ImmutableClass extends _$ImmutableClassSerializable {
 
 @serializable
 class ImmutableWithOptionalParameters extends _$ImmutableWithOptionalParametersSerializable {
-  final int id;
-  final String name;
+  final int? id;
+  final String? name;
 
   ImmutableWithOptionalParameters({this.id, this.name});
 }
 
 @serializable
 class ImmutableClassInvalidParameter extends _$ImmutableClassInvalidParameterSerializable {
-  final String name;
+  final String? name;
 
-  const ImmutableClassInvalidParameter(String aName) : name = aName;
+  const ImmutableClassInvalidParameter(String? aName) : name = aName;
 }
 
 @serializable
 class ListWithImmutableClass extends _$ListWithImmutableClassSerializable {
-  ImmutableClass immutable;
-  List<ImmutableClass> immutables;
+  ImmutableClass? immutable;
+  List<ImmutableClass>? immutables;
 }
 
 main() {

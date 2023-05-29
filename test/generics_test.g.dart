@@ -1,20 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of just_generics_test;
+part of 'generics_test.dart';
 
 // **************************************************************************
 // SerializableGenerator
 // **************************************************************************
 
-abstract class _$GenClassSerializable<T> extends SerializableMap {
-  T get data;
-  List<T> get list;
-  Map<String, T> get mapT;
-  set data(T v);
-  set list(List<T> v);
-  set mapT(Map<String, T> v);
+abstract class _$GenClassSerializable<T1> extends SerializableMap {
+  T1? get data;
+  List<T1>? get list;
+  Map<String, T1>? get mapT;
+  set data(T1? v);
+  set list(List<T1>? v);
+  set mapT(Map<String, T1>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'data':
         return data;
@@ -26,16 +26,16 @@ abstract class _$GenClassSerializable<T> extends SerializableMap {
     throwFieldNotFoundException(__key, 'GenClass');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'data':
         data = __value;
         return;
       case 'list':
-        list = fromSerialized(__value, () => List<T>());
+        list = fromSerialized(__value, () => List<T1>.empty(growable: true));
         return;
       case 'mapT':
-        mapT = fromSerialized(__value, () => Map<String, T>());
+        mapT = fromSerialized(__value, () => Map<String, T1>());
         return;
     }
     throwFieldNotFoundException(__key, 'GenClass');

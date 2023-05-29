@@ -1,26 +1,28 @@
-= serializable
+== serializable
 
-[![Build Status](https://travis-ci.org/dart-league/serializable.svg?branch=master)](https://travis-ci.org/dart-league/serializable)
+[link=https://github.com/dart-league/serializable/actions/workflows/test.yml]
+image::https://github.com/dart-league/serializable/actions/workflows/test.yml/badge.svg?branch=master[Build Status]
 
 This is a library that generates a serializable class from classes annotated with
 `@serializable` or `@Serializable()`.
 
-== Getting Started
+=== Getting Started
 
 1 - Create a new dart project.
+
 2 - add `serializable` dependency to your dependencies and `build_runner` to your dev_dependencies in the file `pubspec.yaml` .
 
 [source,yaml]
 ----
 ...
 dependencies:
-  ...
+  #...
   serializable: any   # change by the latest dependency
-  ...
+  #...
 dev_dependencies:
-  ...
+  #...
   build_runner: any   # change by the latest dependency
-  ...
+  #...
 ----
 
 3 - create a file in `bin` folder called `models.dart` and put next code on it:
@@ -39,7 +41,7 @@ include::example/bin/main.dart[]
 ----
 
 5 - run `pub run build_runner build`. Then you will see that the file `bin/models.g.dart`
-has been generated and it will contains the next code:
+has been generated, and it will contain the next code:
 
 [source, dart]
 ----

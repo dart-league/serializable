@@ -1,28 +1,31 @@
-\[\!\[Build
-Status\](<https://travis-ci.org/dart-league/serializable.svg?branch=master>)\](<https://travis-ci.org/dart-league/serializable>)
+# serializable
+
+![Build
+Status](https://github.com/dart-league/serializable/actions/workflows/test.yml/badge.svg?branch=master)
 
 This is a library that generates a serializable class from classes
 annotated with `@serializable` or `@Serializable()`.
 
-# Getting Started
+## Getting Started
 
-1- Create a new dart project. 2- add `serializable` dependency to your
-dependencies and `build_runner` to your dev\_dependencies in the file
-`pubspec.yaml` .
+1 - Create a new dart project.
+
+2 - add `serializable` dependency to your dependencies and
+`build_runner` to your dev\_dependencies in the file `pubspec.yaml` .
 
 ``` yaml
 ...
 dependencies:
-  ...
+  #...
   serializable: any   # change by the latest dependency
-  ...
+  #...
 dev_dependencies:
-  ...
+  #...
   build_runner: any   # change by the latest dependency
-  ...
+  #...
 ```
 
-3- create a file in `bin` folder called `models.dart` and put next code
+3 - create a file in `bin` folder called `models.dart` and put next code
 on it:
 
 ``` dart
@@ -41,15 +44,15 @@ class SimpleType {
 
 @serializable
 class Person extends _$PersonSerializable {
-  int id;
-  String name;
+  int? id;
+  String? name;
   var someDynamic;
-  Map someMap;
-  Map<String, int> otherMap;
+  Map? someMap;
+  Map<String, int>? otherMap;
 
-  Address address;
+  Address? address;
 
-  List<Address> otherAddresses;
+  List<Address>? otherAddresses;
 
   static final Map<String, SimpleType> list = {
     'minutes': SimpleType('58c42d14f17f33ec6e2020ad', 'minutes'),
@@ -60,11 +63,11 @@ class Person extends _$PersonSerializable {
 
 @serializable
 class Address extends _$AddressSerializable {
-  int id;
-  String street;
-  String zip;
-  String city;
-  String state;
+  int? id;
+  String? street;
+  String? zip;
+  String? city;
+  String? state;
 }
 
 @serializable
@@ -75,8 +78,8 @@ class ClassWithMethod extends _$ClassWithMethodSerializable {
 }
 ```
 
-4- create a file in `bin` folder called `main.dart` and put next code on
-it:
+4 - create a file in `bin` folder called `main.dart` and put next code
+on it:
 
 ``` dart
 import 'dart:convert';
@@ -106,8 +109,7 @@ main() {
   print('p1.ToMap(): ${p1.toMap()}'); // prints `{id: 1, name: person 1}`
   var p2 = Person()
     ..fromMap({"id": 2, "name": "person 2", 'address': Address()..fromMap({'id': 1})});
-  print('p2: {id: ${p2.id}, name: ${p2.name}, address.id: ${p2.address
-      .id}}'); // prints `p2: {id: 2, name: person 2, address.id: 1}`
+  print('p2: {id: ${p2.id}, name: ${p2.name}, address.id: ${p2.address?.id}}'); // prints `p2: {id: 2, name: person 2, address.id: 1}`
 
   var p3 = Person()
     ..fromMap({
@@ -116,8 +118,8 @@ main() {
       'address': Address()..fromMap({'id': 3}),
       'otherAddresses': [{'id': 4, 'street': 'street 4'}].map((e) => Address()..fromMap(e)).toList()
     });
-  print('p3: {id: ${p3.id}, name: ${p3.name}, address.id: ${p3.address.id}, otherAddresses[0].street:'
-      ' ${p3.otherAddresses[0].street}}'); // prints `p3: {id: 3, name: person 3, address.id: 3}`
+  print('p3: {id: ${p3.id}, name: ${p3.name}, address.id: ${p3.address?.id}, otherAddresses[0].street:'
+      ' ${p3.otherAddresses?[0].street}}'); // prints `p3: {id: 3, name: person 3, address.id: 3}`
 
   // you can use it to convert the objects to/from JSON using
   // `dart:convert` library directly
@@ -134,36 +136,36 @@ main() {
 }
 ```
 
-5- run `pub run build_runner build`. Then you will see that the file
-`bin/models.g.dart` has been generated and it will contains the next
+5 - run `pub run build_runner build`. Then you will see that the file
+`bin/models.g.dart` has been generated, and it will contain the next
 code:
 
 ``` dart
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of example.models;
+part of 'models.dart';
 
 // **************************************************************************
 // SerializableGenerator
 // **************************************************************************
 
 abstract class _$PersonSerializable extends SerializableMap {
-  int get id;
-  String get name;
+  int? get id;
+  String? get name;
   dynamic get someDynamic;
-  Map<dynamic, dynamic> get someMap;
-  Map<String, int> get otherMap;
-  Address get address;
-  List<Address> get otherAddresses;
-  set id(int v);
-  set name(String v);
+  Map<dynamic, dynamic>? get someMap;
+  Map<String, int>? get otherMap;
+  Address? get address;
+  List<Address>? get otherAddresses;
+  set id(int? v);
+  set name(String? v);
   set someDynamic(dynamic v);
-  set someMap(Map<dynamic, dynamic> v);
-  set otherMap(Map<String, int> v);
-  set address(Address v);
-  set otherAddresses(List<Address> v);
+  set someMap(Map<dynamic, dynamic>? v);
+  set otherMap(Map<String, int>? v);
+  set address(Address? v);
+  set otherAddresses(List<Address>? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'id':
         return id;
@@ -183,7 +185,7 @@ abstract class _$PersonSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'Person');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'id':
         id = __value;
@@ -204,8 +206,8 @@ abstract class _$PersonSerializable extends SerializableMap {
         address = fromSerialized(__value, () => Address());
         return;
       case 'otherAddresses':
-        otherAddresses =
-            fromSerialized(__value, [() => List<Address>(), () => Address()]);
+        otherAddresses = fromSerialized(__value,
+            [() => List<Address>.empty(growable: true), () => Address()]);
         return;
     }
     throwFieldNotFoundException(__key, 'Person');
@@ -223,18 +225,18 @@ abstract class _$PersonSerializable extends SerializableMap {
 }
 
 abstract class _$AddressSerializable extends SerializableMap {
-  int get id;
-  String get street;
-  String get zip;
-  String get city;
-  String get state;
-  set id(int v);
-  set street(String v);
-  set zip(String v);
-  set city(String v);
-  set state(String v);
+  int? get id;
+  String? get street;
+  String? get zip;
+  String? get city;
+  String? get state;
+  set id(int? v);
+  set street(String? v);
+  set zip(String? v);
+  set city(String? v);
+  set state(String? v);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'id':
         return id;
@@ -250,7 +252,7 @@ abstract class _$AddressSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'Address');
   }
 
-  operator []=(Object __key, __value) {
+  operator []=(Object? __key, __value) {
     switch (__key) {
       case 'id':
         id = __value;
@@ -277,7 +279,7 @@ abstract class _$AddressSerializable extends SerializableMap {
 abstract class _$ClassWithMethodSerializable extends SerializableMap {
   void sayHello(String name);
 
-  operator [](Object __key) {
+  operator [](Object? __key) {
     switch (__key) {
       case 'sayHello':
         return sayHello;
@@ -285,9 +287,8 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
     throwFieldNotFoundException(__key, 'ClassWithMethod');
   }
 
-  operator []=(Object __key, __value) {
-    switch (__key) {
-    }
+  operator []=(Object? __key, __value) {
+    switch (__key) {}
     throwFieldNotFoundException(__key, 'ClassWithMethod');
   }
 
@@ -295,13 +296,10 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
 }
 ```
 
-6- Finally you can run the file `bin/main.dart`. If everything is ok you
-will see next output in console:
+6 - Finally you can run the file `bin/main.dart`. If everything is ok
+you will see next output in console:
 
-    p1['id']: 1
-    p1['name']: person 1
-    FieldNotFoundException: The key "no_existing" doesn't exist on class "Person"
-    p1.ToMap(): {id: 1, name: person 1}
-    p2: {id: 2, name: person 2}
-    p1: {"id":1,"name":"person 1"}
-    p3: {id: 3, name: person 3}
+p1\['id'\]: 1 p1\['name'\]: person 1 FieldNotFoundException: The key
+"no\_existing" doesn't exist on class "Person" p1.ToMap(): {id: 1, name:
+person 1} p2: {id: 2, name: person 2} p1: {"id":1,"name":"person 1"} p3:
+{id: 3, name: person 3}\</programlisting\>

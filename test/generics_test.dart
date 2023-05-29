@@ -6,12 +6,12 @@ import 'package:test/test.dart';
 part 'generics_test.g.dart';
 
 @serializable
-class GenClass<T> extends _$GenClassSerializable<T> {
-  T data;
+class GenClass<T1> extends _$GenClassSerializable<T1> {
+  T1? data;
 
-  List<T> list;
+  List<T1>? list;
 
-  Map<String, T> mapT;
+  Map<String, T1>? mapT;
 }
 
 void main() {

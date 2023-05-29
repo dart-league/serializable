@@ -14,16 +14,16 @@ class Serializable extends Reflectable {
 }
 
 /// Interface that should be implemented by all the generated serializable classes
-abstract class SerializableMap implements Map {
+abstract class SerializableMap implements Map<String, dynamic> {
   const SerializableMap();
 
   /// Returns the field names of the Object
   @override
-  Iterable get keys => null;
+  Iterable<String> get keys => [];
 
   // TODO: implement entries
   @override
-  Iterable<MapEntry> get entries => null;
+  Iterable<MapEntry<String, dynamic>> get entries => [];
 
   /// check if the object [keys] is empty
   @override
@@ -60,15 +60,15 @@ abstract class SerializableMap implements Map {
 
   /// Checks if the object has any attribute with the name of [key]
   @override
-  bool containsKey(Object key) => keys.contains(key);
+  bool containsKey(Object? key) => keys.contains(key);
 
   /// Check if any of the attributes contains the [value].
   @override
-  bool containsValue(Object value) => values.contains(value);
+  bool containsValue(Object? value) => values.contains(value);
 
   /// runs function [f] for each [attribute]-[value] pair
   @override
-  void forEach(void f(attribute, value)) {
+  void forEach(void f(String attribute, value)) {
     keys.forEach((attribute) {
       f(attribute, this[attribute]);
     });
@@ -80,8 +80,8 @@ abstract class SerializableMap implements Map {
 
   /// Sets the [attribute] value to null
   @override
-  remove(Object attribute) {
-    this[attribute] = null;
+  remove(Object? attribute) {
+    this[attribute as String] = null;
   }
 
   @override
@@ -91,12 +91,12 @@ abstract class SerializableMap implements Map {
 
   @override
   Map<RK, RV> cast<RK, RV>() {
-    return null;
+    return {};
   }
 
   @override
-  Map<K2, V2> map<K2, V2>(MapEntry<K2, V2> Function(dynamic key, dynamic value) f) {
-    return null;
+  Map<K2, V2> map<K2, V2>(MapEntry<K2, V2> Function(String key, dynamic value) f) {
+    return {};
   }
 
   @override
@@ -105,7 +105,7 @@ abstract class SerializableMap implements Map {
   }
 
   @override
-  update(key, update, {dynamic Function() ifAbsent}) {
+  update(key, update, {dynamic Function()? ifAbsent}) {
     // TODO: implement update
   }
 
@@ -116,15 +116,15 @@ abstract class SerializableMap implements Map {
 }
 
 class FieldNotFoundException implements Exception {
-  final String type;
-  final String key;
+  final String? type;
+  final String? key;
 
   FieldNotFoundException([this.key, this.type]);
 
   toString() => "FieldNotFoundException: The key \"$key\" doesn't exist on class \"$type\"";
 }
 
-throwFieldNotFoundException(String key, String type) => throw FieldNotFoundException(key, type);
+throwFieldNotFoundException(Object? key, String type) => throw FieldNotFoundException(key as String?, type);
 
 /// Converts the [serialized] value into its respective complex object value depending on the result of the factory
 /// function.
@@ -196,7 +196,7 @@ Map _fromSerializedMap(Map serializedMap, /*Function | List<Function | List<Func
 ///     fromSerializedEnum(1, Color, () => Color.values);  // returns `Color.blue`
 ///     fromSerializedEnum(null, Color, () => Color.values);  // returns `null`
 ///     fromSerializedEnum(Color.blue, Color, () => Color.values);  // returns `Color.blue`
-fromSerializedEnum(int serialized, Type type, Function factory) {
+fromSerializedEnum(int? serialized, Type type, Function factory) {
   return serialized == null || serialized.runtimeType == type ? serialized : factory()[serialized];
 }
 
@@ -206,7 +206,7 @@ fromSerializedEnum(int serialized, Type type, Function factory) {
 ///     fromSerializedDateTime(1533343671) // returns a DateTime object for `2018-08-04T00:47:51-0000`
 ///     fromSerializedDateTime('2002-02-27T14:00:00-0500') // returns DateTime Object form `2002-02-27T14:00:00-0500`
 fromSerializedDateTime(serialized) {
-  return serialized is num
+  return serialized is int
       ? DateTime.fromMillisecondsSinceEpoch(serialized)
       : serialized is String
         ? DateTime.parse(serialized)
