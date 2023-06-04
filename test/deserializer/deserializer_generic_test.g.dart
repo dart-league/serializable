@@ -6,7 +6,7 @@ part of 'deserializer_generic_test.dart';
 // SerializableGenerator
 // **************************************************************************
 
-abstract class _$SimpleClassSerializable extends SerializableMap {
+mixin _$SimpleClassSerializable on SerializableMap {
   String? get name;
   set name(String? v);
   String toString();
@@ -33,7 +33,7 @@ abstract class _$SimpleClassSerializable extends SerializableMap {
   Iterable<String> get keys => const ['name'];
 }
 
-abstract class _$ListStringSerializable extends SerializableMap {
+mixin _$ListStringSerializable on SerializableMap {
   List<String>? get list;
   set list(List<String>? v);
 
@@ -58,7 +58,7 @@ abstract class _$ListStringSerializable extends SerializableMap {
   Iterable<String> get keys => const ['list'];
 }
 
-abstract class _$ListClassSerializable extends SerializableMap {
+mixin _$ListClassSerializable on SerializableMap {
   List<SimpleClass>? get list;
   set list(List<SimpleClass>? v);
 
@@ -85,7 +85,7 @@ abstract class _$ListClassSerializable extends SerializableMap {
   Iterable<String> get keys => const ['list'];
 }
 
-abstract class _$ListTClassSerializable<T> extends SerializableMap {
+mixin _$ListTClassSerializable<T> on SerializableMap {
   List<T>? get listT;
   set listT(List<T>? v);
 
@@ -109,7 +109,7 @@ abstract class _$ListTClassSerializable<T> extends SerializableMap {
   Iterable<String> get keys => const ['listT'];
 }
 
-abstract class _$ListListClassSerializable extends SerializableMap {
+mixin _$ListListClassSerializable on SerializableMap {
   List<List<SimpleClass>>? get list;
   set list(List<List<SimpleClass>>? v);
 
@@ -136,7 +136,7 @@ abstract class _$ListListClassSerializable extends SerializableMap {
   Iterable<String> get keys => const ['list'];
 }
 
-abstract class _$ListListListClassSerializable extends SerializableMap {
+mixin _$ListListListClassSerializable on SerializableMap {
   List<List<List<SimpleClass>>>? get list;
   set list(List<List<List<SimpleClass>>>? v);
 
@@ -166,7 +166,7 @@ abstract class _$ListListListClassSerializable extends SerializableMap {
   Iterable<String> get keys => const ['list'];
 }
 
-abstract class _$ListMapClassSerializable extends SerializableMap {
+mixin _$ListMapClassSerializable on SerializableMap {
   List<Map<String, SimpleClass>>? get list;
   set list(List<Map<String, SimpleClass>>? v);
 
@@ -193,7 +193,7 @@ abstract class _$ListMapClassSerializable extends SerializableMap {
   Iterable<String> get keys => const ['list'];
 }
 
-abstract class _$ListListMapClassSerializable extends SerializableMap {
+mixin _$ListListMapClassSerializable on SerializableMap {
   List<List<Map<String, SimpleClass>>>? get list;
   set list(List<List<Map<String, SimpleClass>>>? v);
 
@@ -223,7 +223,7 @@ abstract class _$ListListMapClassSerializable extends SerializableMap {
   Iterable<String> get keys => const ['list'];
 }
 
-abstract class _$MapStringStringClassSerializable extends SerializableMap {
+mixin _$MapStringStringClassSerializable on SerializableMap {
   Map<String, String>? get myMap;
   set myMap(Map<String, String>? v);
 
@@ -247,7 +247,7 @@ abstract class _$MapStringStringClassSerializable extends SerializableMap {
   Iterable<String> get keys => const ['myMap'];
 }
 
-abstract class _$MapClassSerializable extends SerializableMap {
+mixin _$MapClassSerializable on SerializableMap {
   Map<String, SimpleClass>? get myMap;
   set myMap(Map<String, SimpleClass>? v);
 

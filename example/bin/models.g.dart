@@ -6,7 +6,7 @@ part of 'models.dart';
 // SerializableGenerator
 // **************************************************************************
 
-abstract class _$PersonSerializable extends SerializableMap {
+mixin _$PersonSerializable on SerializableMap {
   int? get id;
   String? get name;
   dynamic get someDynamic;
@@ -81,7 +81,7 @@ abstract class _$PersonSerializable extends SerializableMap {
       ];
 }
 
-abstract class _$AddressSerializable extends SerializableMap {
+mixin _$AddressSerializable on SerializableMap {
   int? get id;
   String? get street;
   String? get zip;
@@ -133,7 +133,7 @@ abstract class _$AddressSerializable extends SerializableMap {
   Iterable<String> get keys => const ['id', 'street', 'zip', 'city', 'state'];
 }
 
-abstract class _$ClassWithMethodSerializable extends SerializableMap {
+mixin _$ClassWithMethodSerializable on SerializableMap {
   void sayHello(String name);
 
   operator [](Object? __key) {

@@ -7,7 +7,7 @@ import 'dart:convert';
 part 'serialize_attributes_test.g.dart';
 
 @serializable
-class Person extends _$PersonSerializable {
+class Person extends SerializableMap with _$PersonSerializable {
   int? id;
   String? name;
   var someDynamic;
@@ -17,19 +17,19 @@ class Person extends _$PersonSerializable {
 
 
 @serializable
-class ClassWithMethod extends _$ClassWithMethodSerializable {
+class ClassWithMethod extends SerializableMap with _$ClassWithMethodSerializable {
   int sum5(int val) => val + 5;
 }
 
 @serializable
-class ClassWithOperator extends _$ClassWithOperatorSerializable {
+class ClassWithOperator extends SerializableMap with _$ClassWithOperatorSerializable {
   int val = 0;
 
   num operator +(_val) => val + _val;
 }
 
 @serializable
-class ClassWithStatics extends _$ClassWithStaticsSerializable {
+class ClassWithStatics extends SerializableMap with _$ClassWithStaticsSerializable {
   static int val = 5;
 
   static someMethod() {

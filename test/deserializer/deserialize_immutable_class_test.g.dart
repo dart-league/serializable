@@ -6,7 +6,7 @@ part of 'deserialize_immutable_class_test.dart';
 // SerializableGenerator
 // **************************************************************************
 
-abstract class _$ImmutableClassSerializable extends SerializableMap {
+mixin _$ImmutableClassSerializable on SerializableMap {
   String get name;
   String get renamed;
 
@@ -28,8 +28,7 @@ abstract class _$ImmutableClassSerializable extends SerializableMap {
   Iterable<String> get keys => const ['name', 'renamed'];
 }
 
-abstract class _$ImmutableWithOptionalParametersSerializable
-    extends SerializableMap {
+mixin _$ImmutableWithOptionalParametersSerializable on SerializableMap {
   int? get id;
   String? get name;
 
@@ -51,9 +50,7 @@ abstract class _$ImmutableWithOptionalParametersSerializable
   Iterable<String> get keys => const ['id', 'name'];
 }
 
-abstract class _$ImmutableClassInvalidParameterSerializable
-    extends SerializableMap {
-  const _$ImmutableClassInvalidParameterSerializable();
+mixin _$ImmutableClassInvalidParameterSerializable on SerializableMap {
   String? get name;
 
   operator [](Object? __key) {
@@ -72,7 +69,7 @@ abstract class _$ImmutableClassInvalidParameterSerializable
   Iterable<String> get keys => const ['name'];
 }
 
-abstract class _$ListWithImmutableClassSerializable extends SerializableMap {
+mixin _$ListWithImmutableClassSerializable on SerializableMap {
   ImmutableClass? get immutable;
   List<ImmutableClass>? get immutables;
   set immutable(ImmutableClass? v);

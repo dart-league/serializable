@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 part 'generics_test.g.dart';
 
 @serializable
-class GenClass<T1> extends _$GenClassSerializable<T1> {
+class GenClass<T1> extends SerializableMap with _$GenClassSerializable<T1> {
   T1? data;
 
   List<T1>? list;

@@ -6,7 +6,7 @@ part of 'serialize_attributes_test.dart';
 // SerializableGenerator
 // **************************************************************************
 
-abstract class _$PersonSerializable extends SerializableMap {
+mixin _$PersonSerializable on SerializableMap {
   int? get id;
   String? get name;
   dynamic get someDynamic;
@@ -59,7 +59,7 @@ abstract class _$PersonSerializable extends SerializableMap {
       const ['id', 'name', 'someDynamic', 'someMap', 'otherMap'];
 }
 
-abstract class _$ClassWithMethodSerializable extends SerializableMap {
+mixin _$ClassWithMethodSerializable on SerializableMap {
   int sum5(int val);
 
   operator [](Object? __key) {
@@ -78,7 +78,7 @@ abstract class _$ClassWithMethodSerializable extends SerializableMap {
   Iterable<String> get keys => const [];
 }
 
-abstract class _$ClassWithOperatorSerializable extends SerializableMap {
+mixin _$ClassWithOperatorSerializable on SerializableMap {
   int get val;
   set val(int v);
 
@@ -102,7 +102,7 @@ abstract class _$ClassWithOperatorSerializable extends SerializableMap {
   Iterable<String> get keys => const ['val'];
 }
 
-abstract class _$ClassWithStaticsSerializable extends SerializableMap {
+mixin _$ClassWithStaticsSerializable on SerializableMap {
   operator [](Object? __key) {
     switch (__key) {}
     throwFieldNotFoundException(__key, 'ClassWithStatics');

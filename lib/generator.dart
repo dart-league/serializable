@@ -18,7 +18,8 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
   Future<String> generateForAnnotatedElement(
       covariant ClassElement element, ConstantReader cr, BuildStep buildStep) async {
 
-    var superTypes = element.allSupertypes.where((st) => st.element.name != 'Object');
+    var superTypes = element.allSupertypes.where((st) =>
+        !{'Object', 'SerializableMap', 'Map'}.contains(st.element.name));
     var stAccessors = superTypes.expand((st) => st.accessors);
     var stMethods = superTypes.expand((st) => st.methods);
     var stFields = superTypes.expand((st) => st.element.fields.where((f) => !f.isStatic));
@@ -37,8 +38,7 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     var methods = _distinctByName<MethodElement>([...element.methods.where(methodCheck), ...stMethods.where(methodCheck)]);
     var typeGenerics = _distinctByName<TypeParameterElement>(element.typeParameters);
 
-    return '''abstract class _\$${className}Serializable${typeGenerics.isNotEmpty ? '<' + typeGenerics.map((x) => x.declaration.name).join(',') + '>' : ''} extends SerializableMap {
-  ${element.constructors.where((c) => c.isConst).map((c) => 'const _\$${className}Serializable${c.name.isNotEmpty ? '.' + c.name : ''}();').join('\n')}
+    return '''mixin _\$${className}Serializable${typeGenerics.isNotEmpty ? '<' + typeGenerics.map((x) => x.declaration.name).join(',') + '>' : ''} on SerializableMap {
   ${getters.map((g) => '${g.returnType.getDisplayString(withNullability: true)} get ${g.name};').join('\n')}
   ${setters.map((s) => 'set ${s.displayName}(${s.type.normalParameterTypes[0].getDisplayString(withNullability: true)} v);').join('\n')}
   ${methods.map((m) => '${m.returnType.getDisplayString(withNullability: true)} ${m.name}(${_renderParameters(m.parameters)});').join('\n')}
@@ -58,7 +58,7 @@ class SerializableGenerator extends GeneratorForAnnotation<Serializable> {
     throwFieldNotFoundException(__key, '$className');
   }
 
-  Iterable<String> get keys => ${useClassMirrors ? '${className}ClassMirror.fields.keys;' : 'const [${fields.map((f) => "'${f.name}'").join(',')}];'}
+  Iterable<String> get keys => ${useClassMirrors ? '${className}ClassMirror.fields?.keys ?? [];' : 'const [${fields.map((f) => "'${f.name}'").join(',')}];'}
 }''';
   }
 }

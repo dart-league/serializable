@@ -7,7 +7,7 @@ import 'dart:convert';
 part 'deserialize_immutable_class_test.g.dart';
 
 @serializable
-class ImmutableClass extends _$ImmutableClassSerializable {
+class ImmutableClass extends SerializableMap with _$ImmutableClassSerializable {
   final String name;
 
   @SerializedName("the_renamed")
@@ -17,7 +17,7 @@ class ImmutableClass extends _$ImmutableClassSerializable {
 }
 
 @serializable
-class ImmutableWithOptionalParameters extends _$ImmutableWithOptionalParametersSerializable {
+class ImmutableWithOptionalParameters extends SerializableMap with _$ImmutableWithOptionalParametersSerializable {
   final int? id;
   final String? name;
 
@@ -25,14 +25,14 @@ class ImmutableWithOptionalParameters extends _$ImmutableWithOptionalParametersS
 }
 
 @serializable
-class ImmutableClassInvalidParameter extends _$ImmutableClassInvalidParameterSerializable {
+class ImmutableClassInvalidParameter extends SerializableMap with _$ImmutableClassInvalidParameterSerializable {
   final String? name;
 
   const ImmutableClassInvalidParameter(String? aName) : name = aName;
 }
 
 @serializable
-class ListWithImmutableClass extends _$ListWithImmutableClassSerializable {
+class ListWithImmutableClass extends SerializableMap with _$ListWithImmutableClassSerializable {
   ImmutableClass? immutable;
   List<ImmutableClass>? immutables;
 }

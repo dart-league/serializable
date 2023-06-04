@@ -1,3 +1,8 @@
+# 2.0.1
+
+- Fix generator to use `mixin` instead `abstract class` for generated classes
+n
+- 
 # 2.0.0
 
 - Upgrade `sdk` to `>=3.0.0 <4.0.0`

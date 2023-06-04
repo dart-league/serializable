@@ -6,7 +6,7 @@ part of 'generics_test.dart';
 // SerializableGenerator
 // **************************************************************************
 
-abstract class _$GenClassSerializable<T1> extends SerializableMap {
+mixin _$GenClassSerializable<T1> on SerializableMap {
   T1? get data;
   List<T1>? get list;
   Map<String, T1>? get mapT;

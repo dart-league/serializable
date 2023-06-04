@@ -43,7 +43,7 @@ class SimpleType {
 }
 
 @serializable
-class Person extends _$PersonSerializable {
+class Person extends SerializableMap with _$PersonSerializable {
   int? id;
   String? name;
   var someDynamic;
@@ -62,7 +62,7 @@ class Person extends _$PersonSerializable {
 }
 
 @serializable
-class Address extends _$AddressSerializable {
+class Address extends SerializableMap with _$AddressSerializable {
   int? id;
   String? street;
   String? zip;
@@ -71,7 +71,7 @@ class Address extends _$AddressSerializable {
 }
 
 @serializable
-class ClassWithMethod extends _$ClassWithMethodSerializable {
+class ClassWithMethod extends SerializableMap with _$ClassWithMethodSerializable {
   void sayHello(String name) {
     print('Hello $name!');
   }
@@ -149,7 +149,7 @@ part of 'models.dart';
 // SerializableGenerator
 // **************************************************************************
 
-abstract class _$PersonSerializable extends SerializableMap {
+mixin _$PersonSerializable on SerializableMap {
   int? get id;
   String? get name;
   dynamic get someDynamic;
@@ -224,7 +224,7 @@ abstract class _$PersonSerializable extends SerializableMap {
       ];
 }
 
-abstract class _$AddressSerializable extends SerializableMap {
+mixin _$AddressSerializable on SerializableMap {
   int? get id;
   String? get street;
   String? get zip;
@@ -276,7 +276,7 @@ abstract class _$AddressSerializable extends SerializableMap {
   Iterable<String> get keys => const ['id', 'street', 'zip', 'city', 'state'];
 }
 
-abstract class _$ClassWithMethodSerializable extends SerializableMap {
+mixin _$ClassWithMethodSerializable on SerializableMap {
   void sayHello(String name);
 
   operator [](Object? __key) {

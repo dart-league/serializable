@@ -6,7 +6,7 @@ part of 'deserialize_enums_test.dart';
 // SerializableGenerator
 // **************************************************************************
 
-abstract class _$ObjectWithEnumSerializable extends SerializableMap {
+mixin _$ObjectWithEnumSerializable on SerializableMap {
   Color? get color;
   set color(Color? v);
 

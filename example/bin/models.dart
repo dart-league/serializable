@@ -12,7 +12,7 @@ class SimpleType {
 }
 
 @serializable
-class Person extends _$PersonSerializable {
+class Person extends SerializableMap with _$PersonSerializable {
   int? id;
   String? name;
   var someDynamic;
@@ -31,7 +31,7 @@ class Person extends _$PersonSerializable {
 }
 
 @serializable
-class Address extends _$AddressSerializable {
+class Address extends SerializableMap with _$AddressSerializable {
   int? id;
   String? street;
   String? zip;
@@ -40,7 +40,7 @@ class Address extends _$AddressSerializable {
 }
 
 @serializable
-class ClassWithMethod extends _$ClassWithMethodSerializable {
+class ClassWithMethod extends SerializableMap with _$ClassWithMethodSerializable {
   void sayHello(String name) {
     print('Hello $name!');
   }

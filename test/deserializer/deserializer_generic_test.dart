@@ -8,54 +8,54 @@ import 'package:serializable/serializable.dart';
 part 'deserializer_generic_test.g.dart';
 
 @serializable
-class SimpleClass extends _$SimpleClassSerializable {
+class SimpleClass extends SerializableMap with _$SimpleClassSerializable {
   String? name;
 
   String toString() => "SimpleClass: name: ${name}";
 }
 
 @serializable
-class ListString extends _$ListStringSerializable{
+class ListString extends SerializableMap with _$ListStringSerializable{
   List<String>? list;
 }
 
 @serializable
-class ListClass extends _$ListClassSerializable {
+class ListClass extends SerializableMap with _$ListClassSerializable {
   List<SimpleClass>? list;
 }
 
 @serializable
-class ListTClass<T> extends _$ListTClassSerializable<T> {
+class ListTClass<T> extends SerializableMap with _$ListTClassSerializable<T> {
   List<T>? listT;
 }
 
 @serializable
-class ListListClass extends _$ListListClassSerializable {
+class ListListClass extends SerializableMap with _$ListListClassSerializable {
   List<List<SimpleClass>>? list;
 }
 
 @serializable
-class ListListListClass extends _$ListListListClassSerializable {
+class ListListListClass extends SerializableMap with _$ListListListClassSerializable {
   List<List<List<SimpleClass>>>? list;
 }
 
 @serializable
-class ListMapClass extends _$ListMapClassSerializable {
+class ListMapClass extends SerializableMap with _$ListMapClassSerializable {
   List<Map<String, SimpleClass>>? list;
 }
 
 @serializable
-class ListListMapClass extends _$ListListMapClassSerializable {
+class ListListMapClass extends SerializableMap with _$ListListMapClassSerializable {
   List<List<Map<String, SimpleClass>>>? list;
 }
 
 @serializable
-class MapStringStringClass extends _$MapStringStringClassSerializable {
+class MapStringStringClass extends SerializableMap with _$MapStringStringClassSerializable {
   Map<String, String>? myMap;
 }
 
 @serializable
-class MapClass extends _$MapClassSerializable {
+class MapClass extends SerializableMap with _$MapClassSerializable {
   Map<String, SimpleClass>? myMap;
 }
 

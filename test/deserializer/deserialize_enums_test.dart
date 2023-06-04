@@ -14,7 +14,7 @@ enum Color {
 }
 
 @serializable
-class ObjectWithEnum extends _$ObjectWithEnumSerializable {
+class ObjectWithEnum extends SerializableMap with _$ObjectWithEnumSerializable {
   Color? color;
 }
 
